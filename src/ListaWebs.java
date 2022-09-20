@@ -29,6 +29,11 @@ public class ListaWebs
     {
         // hay que añadir una web a la lista, en el orden en el que le corresponda. Para ello habrá que usar un iterador y el identificador de la web a añadir
     }
+
+    public void anadirRelacion(Integer index, ArrayList<Integer> relaciones)
+    {
+        // hay que añadir una las relaciones de la web, a la web posicionada en la posicion index de la lista
+    }
     public void borrarWeb(Web pWeb)
     {
         // hay que borrar una web a la lista, en el orden en el que le corresponda

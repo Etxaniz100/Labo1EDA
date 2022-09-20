@@ -12,4 +12,16 @@ public class ListaPalabras
     }
     // ------ Métodos ------
 
+    public static ListaPalabras getMiListaPalabras()
+    {
+        if (miListaPalabras==null)
+        {
+            miListaPalabras = new ListaPalabras();
+        }
+        return miListaPalabras;
+    }
+
+    public void anadirPalabra(String palabra){
+        listaPalabras.add(palabra);
+    }
 }
