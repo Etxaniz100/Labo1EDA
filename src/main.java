@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class main {
-    //Ayuda por favor
 
     // ------ Atributos ------
     //private ArrayList<Escenario> lista;
@@ -15,7 +14,6 @@ public class main {
     // ----- Constructora -----
     private main()
     {
-
     }
 
     // ------ Metodos ------

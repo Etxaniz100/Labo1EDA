@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Web
 {
+    // ------ Atributos ------
     // los tres atributos que usamos son el nombre de la web, el identificador y la lista de las relaciones que esta tiene con las demás
     private String nombre;
     private Integer id;
