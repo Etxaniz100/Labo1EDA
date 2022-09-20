@@ -79,10 +79,11 @@ public class main {
     }
 
     public void cargarListaRelaciones(String nomF){
-        //Coste operativo de esto : n * media de relaciones entre webs, pero no es mucho entonces O(n)
+        //Coste operativo de esto : n * media de relaciones entre webs, pero no es mucho entonces O(n) --> coste lineal
 
 
-        try{
+        try
+        {
             //Abrimos y preparamos el scanner
             Scanner entrada = new Scanner(new FileReader(nomF));
             String linea;
