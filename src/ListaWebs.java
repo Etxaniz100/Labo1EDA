@@ -1,7 +1,5 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class ListaWebs
 {
@@ -27,9 +25,18 @@ public class ListaWebs
     {
         return this.lista.iterator();
     }
-    public void anadirWeb(Web web)
+    public void anadirWeb(Web pWeb)
     {
         // hay que añadir una web a la lista, en el orden en el que le corresponda. Para ello habrá que usar un iterador y el identificador de la web a añadir
+    }
+    public void borrarWeb(Web pWeb)
+    {
+        // hay que borrar una web a la lista, en el orden en el que le corresponda
+    }
+    public Web buscarWebPorString(String pNombre)
+    {
+        // Desarrollar
+        return null;
     }
     public Integer string2Id(String pNombre)
     {
@@ -53,4 +60,6 @@ public class ListaWebs
         }
         return (nom);
     }
+
+
 }
