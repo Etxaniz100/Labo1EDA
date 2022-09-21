@@ -46,6 +46,12 @@ public class ListaWebs
             lista.get(j+1).setId(aux);
         }
     }
+    public ArrayList<Web> getLista()
+    {
+        return this.lista;
+
+    }
+
     public void insertarWeb(Web pWeb)
     {
         this.lista.add(pWeb);
@@ -53,9 +59,10 @@ public class ListaWebs
 
     }
 
-    public void anadirRelacion(Integer index, ArrayList<Integer> relaciones)
+    public void anadirRelacion(Integer id, ArrayList<Integer> relaciones)
     {
         // hay que añadir una las relaciones de la web, a la web posicionada en la posicion index de la lista
+        this.lista.get(id).editarLista(relaciones);
     }
     public void borrarWeb(Web pWeb)
     {

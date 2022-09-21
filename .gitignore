@@ -2,7 +2,9 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-
+!**/index-2022-2023
+!**/pld-arcs-1-N-2022-2023
+!**/words.txt
 ### Eclipse ###
 .apt_generated
 .classpath
@@ -27,3 +29,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+

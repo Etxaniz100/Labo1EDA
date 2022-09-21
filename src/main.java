@@ -22,6 +22,15 @@ public class main {
     public static void main(String args[]) {
         Path path = Paths.get("");
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
+        main.getMiMain().cargarListaRelaciones( path.toAbsolutePath().toString() + "\\src\\pld-arcs-1-N-2022-2023");
+        main.getMiMain().cargarListaPlabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
+
+
+        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
+        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
+        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
+
+
     //Metodo main
     }
 
@@ -37,13 +46,14 @@ public class main {
 
     public void cargarListaIndex(String nomF){
         //Coste operativo de esto : O(n)
-
+        System.out.println("Cargando lista index");
         try{
             Scanner entrada = new Scanner(new FileReader(nomF));
             String linea;
             while (entrada.hasNext()) {
                 linea = entrada.nextLine();
-                String datos[] = linea.split("\\s+?:+\\s+?");
+                String datos[] = linea.split(":+");
+
 
                 ListaWebs.getMiListaWebs().insertarWeb(new Web(datos[1],Integer.valueOf(datos[0]))); //Creamos la web con los dos datos leidos
             }
@@ -52,12 +62,14 @@ public class main {
         catch(IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Lista Index cargada");
+
     }
 
     public void cargarListaPlabras(String nomF){
         //Coste operativo de esto : O(n)
 
-
+        System.out.println("Cargando lista palabras");
         try{
             //Abrimos y preparamos el scanner
             Scanner entrada = new Scanner(new FileReader(nomF));
@@ -76,12 +88,13 @@ public class main {
         catch(IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Lista palabras cargada");
     }
 
     public void cargarListaRelaciones(String nomF){
         //Coste operativo de esto : n * media de relaciones entre webs, pero no es mucho entonces O(n) --> coste lineal
 
-
+        System.out.println("Cargando lista relaciones");
         try
         {
             //Abrimos y preparamos el scanner
@@ -94,27 +107,29 @@ public class main {
                 //Separamos en dos la linea, en una parte el index, y en la otra todas las relaciones
                 String datos[] = linea.split("\\s+?-+>+\\s+?"); //No estoy seguro de esto (la parte de dentro del split) ?????????????????????
 
-                //Separamos todas las relaciones en forma de Strings
-                String[] relacionesTexto = datos[1].split("\\s+?#+\\s+?");
-
                 //Creamos la lista que usaremos para el metodo anadirRelacion que tiene que ser de integers
-                ArrayList<Integer> listaRelaciones = null;
+                ArrayList<Integer> listaRelaciones = new ArrayList<Integer>();
 
-                //En este bucle convertimos uno a uno las relaciones a Integer y las añadimos a la lista
-                for(int i = 0; i < relacionesTexto.length; i++)
-                {
-                    listaRelaciones.add(Integer.valueOf(relacionesTexto[i]));  // aqui convertimos la string a integer
+                //Separamos todas las relaciones en forma de Strings
+                if (datos.length > 1) {
+                    String[] relacionesTexto = datos[1].split("\\s+?#+\\s+?");
+
+                    //En este bucle convertimos uno a uno las relaciones a Integer y las añadimos a la lista
+                    for(int i = 0; i < relacionesTexto.length; i++)
+                    {
+                        listaRelaciones.add(Integer.valueOf(relacionesTexto[i]));  // aqui convertimos la string a integer
+                    }
+
                 }
-
                 //Añadimos las relaciones a la web correspondiente
                 ListaWebs.getMiListaWebs().anadirRelacion(Integer.valueOf(datos[0]), listaRelaciones);
-
             }
             entrada.close();
         }
         catch(IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Lista relaciones cargada");
     }
 
 }
