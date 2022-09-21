@@ -26,9 +26,9 @@ public class main {
         main.getMiMain().cargarListaPlabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
 
 
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
+        System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
+        System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
+        System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
 
 
     //Metodo main
@@ -45,7 +45,7 @@ public class main {
     }
 
     public void cargarListaIndex(String nomF){
-        //Coste operativo de esto : O(n)
+        //Coste operativo de esto : O(n) --> Lineal
         System.out.println("Cargando lista index");
         try{
             Scanner entrada = new Scanner(new FileReader(nomF));
@@ -67,7 +67,7 @@ public class main {
     }
 
     public void cargarListaPlabras(String nomF){
-        //Coste operativo de esto : O(n)
+        //Coste operativo de esto : O(n) --> Lineal
 
         System.out.println("Cargando lista palabras");
         try{
@@ -105,7 +105,7 @@ public class main {
                 linea = entrada.nextLine();
 
                 //Separamos en dos la linea, en una parte el index, y en la otra todas las relaciones
-                String datos[] = linea.split("\\s+?-+>+\\s+?"); //No estoy seguro de esto (la parte de dentro del split) ?????????????????????
+                String datos[] = linea.split("\\s+?-+>+\\s+?");
 
                 //Creamos la lista que usaremos para el metodo anadirRelacion que tiene que ser de integers
                 ArrayList<Integer> listaRelaciones = new ArrayList<Integer>();
@@ -131,5 +131,4 @@ public class main {
         }
         System.out.println("Lista relaciones cargada");
     }
-
 }
