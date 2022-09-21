@@ -30,7 +30,7 @@ public class ListaPalabras
     {
         // Se ordena despues de añadir la palabra porque el .add la añade al final.
         listaPalabras.add(palabra);
-        this.ordenarPalabras();
+        //this.ordenarPalabras();
     }
 
 }

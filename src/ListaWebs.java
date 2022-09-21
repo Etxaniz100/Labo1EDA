@@ -49,7 +49,7 @@ public class ListaWebs
     public void insertarWeb(Web pWeb)
     {
         this.lista.add(pWeb);
-        this.ordenarWebs();
+        //this.ordenarWebs();
 
     }
 
