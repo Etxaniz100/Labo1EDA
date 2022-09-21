@@ -45,7 +45,7 @@ public class main {
                 linea = entrada.nextLine();
                 String datos[] = linea.split("\\s+?:+\\s+?");
 
-                ListaWebs.getMiListaWebs().anadirWeb(new Web(datos[1],Integer.valueOf(datos[0]))); //Creamos la web con los dos datos leidos
+                ListaWebs.getMiListaWebs().insertarWeb(new Web(datos[1],Integer.valueOf(datos[0]))); //Creamos la web con los dos datos leidos
             }
             entrada.close();
         }
@@ -101,8 +101,9 @@ public class main {
                 ArrayList<Integer> listaRelaciones = null;
 
                 //En este bucle convertimos uno a uno las relaciones a Integer y las añadimos a la lista
-                for(int i = 0; i < relacionesTexto.length; i++){
-                    listaRelaciones.add(Integer.valueOf(relacionesTexto[i]));
+                for(int i = 0; i < relacionesTexto.length; i++)
+                {
+                    listaRelaciones.add(Integer.valueOf(relacionesTexto[i]));  // aqui convertimos la string a integer
                 }
 
                 //Añadimos las relaciones a la web correspondiente

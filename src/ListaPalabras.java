@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ListaPalabras
 {
@@ -20,8 +21,16 @@ public class ListaPalabras
         }
         return miListaPalabras;
     }
-
-    public void anadirPalabra(String palabra){
-        listaPalabras.add(palabra);
+    public void ordenarPalabras()
+    {
+        // se usa el collections para poder ordenar la lista de strings sin tener que programar de cero
+        Collections.sort(listaPalabras);
     }
+    public void anadirPalabra(String palabra)
+    {
+        // Se ordena despues de añadir la palabra porque el .add la añade al final.
+        listaPalabras.add(palabra);
+        this.ordenarPalabras();
+    }
+
 }

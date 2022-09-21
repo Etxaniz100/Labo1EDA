@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class ListaWebs
@@ -25,9 +26,31 @@ public class ListaWebs
     {
         return this.lista.iterator();
     }
-    public void anadirWeb(Web pWeb)
+    public void ordenarWebs()
     {
-        // hay que añadir una web a la lista, en el orden en el que le corresponda. Para ello habrá que usar un iterador y el identificador de la web a añadir
+        // no se pueden ordenar con un sort, ya que tenemos que ordenar la lista de objetos web
+        // por tanto tenemos que hacerlo de otra manera, empleando un algoritmo de ordenacion
+
+        Integer n = this.lista.size();
+        for (Integer i = 1; i < n; i++) {
+            Integer aux = this.lista.get(i).getId();
+            Integer j = i - 1;
+
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && lista.get(j).getId() > aux) {
+                lista.get(j+1).setId(lista.get(j).getId());
+                j = j - 1;
+            }
+            lista.get(j+1).setId(aux);
+        }
+    }
+    public void insertarWeb(Web pWeb)
+    {
+        this.lista.add(pWeb);
+        this.ordenarWebs();
+
     }
 
     public void anadirRelacion(Integer index, ArrayList<Integer> relaciones)

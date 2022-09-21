@@ -34,6 +34,10 @@ public class Web
     {
         return (this.listaRelaciones);
     }
+    public void setId(Integer pId)
+    {
+        this.id= pId;
+    }
     public void editarLista(ArrayList<Integer> pLista)
     {
         this.listaRelaciones = pLista;
