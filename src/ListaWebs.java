@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,25 +27,49 @@ public class ListaWebs
     {
         return this.lista.iterator();
     }
+
+    // métodos para el quicksort:
+    public void intercambiar(ArrayList<Web> laLista, Integer i, Integer j)
+    {
+        // aqui intercambiamos los elementos de la lista que nos interesen
+        Web aux = laLista.get(i);
+        laLista.set(i,laLista.get(j));
+        laLista.set(j,aux);
+    }
+    private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
+    {
+        Integer pivote = laLista.get(fin).getId();
+        Integer indice = (inicio-1);
+        // empezamos el bucle
+        for (Integer indice2 = inicio; indice2<fin; indice2++)
+        {
+            if (laLista.get(indice2).getId()<=pivote)
+            {
+                indice++;
+                intercambiar(laLista, indice, indice2);
+            }
+        }
+        intercambiar(laLista, indice+1, fin);
+        return (indice+1);
+    }
+    public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
+            // aqui haremos el quicksort usando recursividad
+    {
+        if (inicio<fin)
+        {
+            // aqui conseguimos la particion que nos interesa
+            Integer indice = particion(laLista, inicio,fin);
+            // y dividimos el problema en dos trozos, que se llamaran recursivamente y se irán ordenando
+            quicksort(laLista,inicio, indice-1);
+            quicksort(laLista, indice+1, fin );
+        }
+    }
     public void ordenarWebs()
     {
         // no se pueden ordenar con un sort, ya que tenemos que ordenar la lista de objetos web
         // por tanto tenemos que hacerlo de otra manera, empleando un algoritmo de ordenacion
-
-        Integer n = this.lista.size();
-        for (Integer i = 1; i < n; i++) {
-            Integer aux = this.lista.get(i).getId();
-            Integer j = i - 1;
-
-            /* Move elements of arr[0..i-1], that are
-               greater than key, to one position ahead
-               of their current position */
-            while (j >= 0 && lista.get(j).getId() > aux) {
-                lista.get(j+1).setId(lista.get(j).getId());
-                j = j - 1;
-            }
-            lista.get(j+1).setId(aux);
-        }
+        // por complejidad del tiempo es mejor idea usar el algoritmo QUICKSORT --> O(n*log(n))
+        quicksort(this.lista, 0, this.lista.size());
     }
     public ArrayList<Web> getLista()
     {
@@ -66,7 +91,23 @@ public class ListaWebs
     }
     public void borrarWeb(Web pWeb)
     {
-        // hay que borrar una web a la lista, en el orden en el que le corresponda
+        // puede que se intente borrar una web que no está en la lista, asi que hay que hacer un try
+        // Complejidad de tiempo --> O(n) ya que solo tiene un bucle
+        Integer identif= pWeb.getId();
+        // lo eliminamos de la lista, y ahora tenemos que mover el resto de la lista que necesitamos
+        try
+        {
+            lista.remove(pWeb);
+            for (Integer i= identif; i<this.lista.size(); i++)
+            {
+                // con esto conseguimos que su posicion en el array y su id sean el mismo
+                this.lista.get(i).setId(i);
+            }
+        }
+        catch(IndexOutOfBoundsException ioobe)
+        {
+            System.out.println("La web no está en la lista!");
+        }
     }
     public Web buscarWebPorString(String pNombre)
     {
@@ -76,7 +117,6 @@ public class ListaWebs
     public Integer string2Id(String pNombre)
     {
         // hay que encontrar el Id del nombre de esa web, para eso hay que buscarla en la lista.
-
         return null;
     }
     public String id2String(Integer pId)
