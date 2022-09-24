@@ -38,6 +38,7 @@ public class ListaWebs
     }
     private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
     {
+
         Integer pivote = laLista.get(fin).getId();
         Integer indice = (inicio-1);
         // empezamos el bucle
@@ -57,7 +58,7 @@ public class ListaWebs
     {
         if (inicio<fin)
         {
-            // aqui conseguimos la particion que nos interesa
+            // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
             Integer indice = particion(laLista, inicio,fin);
             // y dividimos el problema en dos trozos, que se llamaran recursivamente y se irán ordenando
             quicksort(laLista,inicio, indice-1);
@@ -69,8 +70,10 @@ public class ListaWebs
         // no se pueden ordenar con un sort, ya que tenemos que ordenar la lista de objetos web
         // por tanto tenemos que hacerlo de otra manera, empleando un algoritmo de ordenacion
         // por complejidad del tiempo es mejor idea usar el algoritmo QUICKSORT --> O(n*log(n))
-        quicksort(this.lista, 0, this.lista.size());
+        quicksort(this.lista, 0, this.lista.size()-1);
     }
+    //Fin quicksort
+
     public ArrayList<Web> getLista()
     {
         return this.lista;
