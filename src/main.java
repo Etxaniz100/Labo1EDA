@@ -26,9 +26,12 @@ public class main {
         main.getMiMain().cargarListaPlabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
 
 
-        System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
-        System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
-        System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
+        System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId());
+
+
+        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
+        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
+        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
 
 
     //Metodo main

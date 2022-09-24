@@ -2,6 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class ListaWebs
 {
@@ -114,12 +115,99 @@ public class ListaWebs
     }
     public Web buscarWebPorString(String pNombre)
     {
-        // Desarrollar
-        return null;
+        // hay que encontrar el Id del nombre de esa web, para eso hay que buscarla en la lista.
+        //Como hay muchas webs, empezamos en la mistad de la lista y comprobamos por que letra empiezan las webs, si nuestra
+        //web coincide con esa letra, se comprobara la siguiente letra
+        //Si no coincide y es mas pequeña obtenemos la nueva lista formada por todos los elementos a la izquierda y se vuelve a implemetar
+        //Lo mismo en caso de que sea mayor
+
+        return buscarWebPorNombre(lista, 0, lista.toArray().length, pNombre, 0);
+    }
+
+    public Web buscarWebPorNombre(ArrayList<Web> lista, Integer inicio, Integer fin, String nombre, Integer caracter){
+        //System.out.println("Inicio");
+        Integer indxComprobador;
+
+        //Obtenemos el index que este en medio de la lista
+        if ((fin-inicio) % 2 == 0){
+            indxComprobador = (fin-inicio)/2;
+        } else {
+            indxComprobador = ((fin-inicio)+1)/2;
+        }
+        indxComprobador = indxComprobador + inicio;
+
+        //System.out.println("La lista empieza en " + inicio + ", y acaba en " + fin + ". Entonces partimos en " + indxComprobador);
+        //System.out.println("Tamaño de la lista : " + (fin - inicio));
+        //Obtenemos el nombre de esa web
+        String nombreSeparador = lista.get(indxComprobador).getNombre();
+        boolean buscando = true;
+        Web devolver = null;
+        //Ahora comparamos la primera letra
+        if (nombreSeparador.charAt(caracter) == nombre.charAt(caracter)){
+            //En este caso la primera letra coincide
+
+            //System.out.println("La letra coincide");
+            //System.out.println("Palabra actual : " + nombreSeparador);
+            if (nombreSeparador == nombre){
+                //System.out.println("La palabra coincide");
+                buscando = false;
+                //Pasa hasta el return
+            } else if (nombreSeparador.charAt(1) >= nombre.charAt(1)) {
+                //System.out.println("Entramos en bucle hacia la izquierda");
+                //Mientras que la primera letra de la palabra coincida y no se haya encontrado
+                while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando){
+                    //Buscamos hacia la izquierda
+                    //System.out.println("Disminuimos el indx");
+                    indxComprobador --;
+                    //System.out.println("Indx : " + indxComprobador);
+                    nombreSeparador = lista.get(indxComprobador).getNombre();
+                    //System.out.println("Palabra actual : " + nombreSeparador + ".");
+                    if (Objects.equals(nombreSeparador, nombre)){
+                        //System.out.println("La palabra coincide");
+                        devolver = lista.get(indxComprobador);
+                        buscando = false;
+                    }
+                }
+            } else {
+                //System.out.println("Entramos en bucle hacia la derecha");
+                while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando){
+                    //Buscamos hacia la derecha
+                    //System.out.println("Aumentamos el indx");
+                    indxComprobador ++;
+                    //System.out.println("Indx : " + indxComprobador);
+                    nombreSeparador = lista.get(indxComprobador).getNombre();
+                    //System.out.println("Palabra actual : " + nombreSeparador + ".");
+                    if (Objects.equals(nombreSeparador, nombre)){
+                        //System.out.println("La palabra coincide");
+                        devolver = lista.get(indxComprobador);
+                        buscando = false;
+                    }
+                }
+            }
+
+                //En este caso la primera letra coincide
+
+        }
+        else if (nombreSeparador.charAt(caracter) > nombre.charAt(caracter)) {
+            //Crearemos la nueva lista con la primera mitad
+            //System.out.println("La letra no coincide, partimos por la derecha");
+            devolver = buscarWebPorNombre(lista, inicio, indxComprobador-1, nombre, caracter);
+            //System.out.println("Salimos de la recursividad derecha con la web : " + devolver.getNombre());
+
+        }
+        else {
+            //Crearemos la nueva lista con la segunda mitad
+            //System.out.println("La letra no coincide, partimos por la izquierda");
+            devolver = buscarWebPorNombre(lista, indxComprobador+1, fin, nombre, caracter);
+            //System.out.println("Salimos de la recursividad izquierda con la web : " + devolver.getNombre());
+        }
+
+        return devolver;
+
     }
     public Integer string2Id(String pNombre)
     {
-        // hay que encontrar el Id del nombre de esa web, para eso hay que buscarla en la lista.
+
         return null;
     }
     public String id2String(Integer pId)
