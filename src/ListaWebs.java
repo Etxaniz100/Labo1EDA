@@ -130,6 +130,18 @@ public class ListaWebs
         try
         {
             unaWeb = this.lista.get(pId);
+            while (unaWeb.getId()!=pId)
+            {
+                unaWeb = this.lista.get(pId);
+                if (unaWeb.getId()> pId)
+                {
+                    pId++;
+                }
+                else if (unaWeb.getId()< pId)
+                {
+                    pId--;
+                }
+            }
             nom = unaWeb.getNombre();
         }
         catch(NullPointerException nullPointerException)
