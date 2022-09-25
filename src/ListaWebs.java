@@ -1,8 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 public class ListaWebs
 {
@@ -39,7 +36,6 @@ public class ListaWebs
     }
     private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
     {
-
         Integer pivote = laLista.get(fin).getId();
         Integer indice = (inicio-1);
         // empezamos el bucle
@@ -57,6 +53,7 @@ public class ListaWebs
     public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
             // aqui haremos el quicksort usando recursividad
     {
+        System.out.println(inicio);
         if (inicio<fin)
         {
             // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
@@ -65,6 +62,7 @@ public class ListaWebs
             quicksort(laLista,inicio, indice-1);
             quicksort(laLista, indice+1, fin );
         }
+
     }
     public void ordenarWebs()
     {
@@ -126,11 +124,13 @@ public class ListaWebs
     public Web buscarWebPorNombre(ArrayList<Web> lista, Integer inicio, Integer fin, String nombre, Integer caracter){
         //System.out.println("Inicio");
         Integer indxComprobador;
-
         //Obtenemos el index que este en medio de la lista
-        if ((fin-inicio) % 2 == 0){
+        if ((fin-inicio) % 2 == 0)
+        {
             indxComprobador = (fin-inicio)/2;
-        } else {
+        }
+        else
+        {
             indxComprobador = ((fin-inicio)+1)/2;
         }
         indxComprobador = indxComprobador + inicio;
@@ -142,41 +142,50 @@ public class ListaWebs
         boolean buscando = true;
         Web devolver = null;
         //Ahora comparamos la primera letra
-        if (nombreSeparador.charAt(caracter) == nombre.charAt(caracter)){
+        if (nombreSeparador.charAt(caracter) == nombre.charAt(caracter))
+        {
             //En este caso la primera letra coincide
-
             //System.out.println("La letra coincide");
             //System.out.println("Palabra actual : " + nombreSeparador);
-            if (nombreSeparador == nombre){
+            if (nombreSeparador == nombre)
+            {
                 //System.out.println("La palabra coincide");
                 buscando = false;
                 //Pasa hasta el return
-            } else if (nombreSeparador.charAt(1) >= nombre.charAt(1)) {
+            }
+            else if (nombreSeparador.charAt(1) >= nombre.charAt(1))
+            {
                 //System.out.println("Entramos en bucle hacia la izquierda");
                 //Mientras que la primera letra de la palabra coincida y no se haya encontrado
-                while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando){
+                while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando)
+                {
                     //Buscamos hacia la izquierda
                     //System.out.println("Disminuimos el indx");
                     indxComprobador --;
                     //System.out.println("Indx : " + indxComprobador);
                     nombreSeparador = lista.get(indxComprobador).getNombre();
                     //System.out.println("Palabra actual : " + nombreSeparador + ".");
-                    if (Objects.equals(nombreSeparador, nombre)){
+                    if (Objects.equals(nombreSeparador, nombre))
+                    {
                         //System.out.println("La palabra coincide");
                         devolver = lista.get(indxComprobador);
                         buscando = false;
                     }
                 }
-            } else {
+            }
+            else
+            {
                 //System.out.println("Entramos en bucle hacia la derecha");
-                while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando){
+                while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando)
+                {
                     //Buscamos hacia la derecha
                     //System.out.println("Aumentamos el indx");
                     indxComprobador ++;
                     //System.out.println("Indx : " + indxComprobador);
                     nombreSeparador = lista.get(indxComprobador).getNombre();
                     //System.out.println("Palabra actual : " + nombreSeparador + ".");
-                    if (Objects.equals(nombreSeparador, nombre)){
+                    if (Objects.equals(nombreSeparador, nombre))
+                    {
                         //System.out.println("La palabra coincide");
                         devolver = lista.get(indxComprobador);
                         buscando = false;
@@ -187,14 +196,16 @@ public class ListaWebs
                 //En este caso la primera letra coincide
 
         }
-        else if (nombreSeparador.charAt(caracter) > nombre.charAt(caracter)) {
+        else if (nombreSeparador.charAt(caracter) > nombre.charAt(caracter))
+        {
             //Crearemos la nueva lista con la primera mitad
             //System.out.println("La letra no coincide, partimos por la derecha");
             devolver = buscarWebPorNombre(lista, inicio, indxComprobador-1, nombre, caracter);
             //System.out.println("Salimos de la recursividad derecha con la web : " + devolver.getNombre());
 
         }
-        else {
+        else
+        {
             //Crearemos la nueva lista con la segunda mitad
             //System.out.println("La letra no coincide, partimos por la izquierda");
             devolver = buscarWebPorNombre(lista, indxComprobador+1, fin, nombre, caracter);

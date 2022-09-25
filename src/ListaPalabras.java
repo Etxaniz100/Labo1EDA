@@ -31,5 +31,8 @@ public class ListaPalabras
         // Se ordena despues de añadir la palabra porque el .add la añade al final.
         listaPalabras.add(palabra);
     }
-
+    public String obtenerPalabra(Integer id)
+    {
+        return this.listaPalabras.get(id);
+    }
 }
