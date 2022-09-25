@@ -19,20 +19,26 @@ public class main {
     }
 
     // ------ Metodos ------
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         Path path = Paths.get("");
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
         main.getMiMain().cargarListaRelaciones( path.toAbsolutePath().toString() + "\\src\\pld-arcs-1-N-2022-2023");
         main.getMiMain().cargarListaPlabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
 
+        // Prueba buscarWebPorString
+        System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
+        System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId()); // Una web aleatoria
+        System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("zzzz6666.com").getId());  // Ultima web
+        // Prueba string2Id
+        System.out.println(ListaWebs.getMiListaWebs().string2Id("0-00.pl")); // La primera web
+        System.out.println(ListaWebs.getMiListaWebs().string2Id("willcom.gr.jp")); // Una web aleatoria
+        System.out.println(ListaWebs.getMiListaWebs().string2Id("zzzz6666.com"));  // Ultima web
 
-        System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId());
-
-
+        // Pruebas de IMPORTACION DE FICHEROS
         //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
         //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
         //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
-
 
     //Metodo main
     }

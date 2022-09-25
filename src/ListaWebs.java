@@ -116,11 +116,10 @@ public class ListaWebs
     public Web buscarWebPorString(String pNombre)
     {
         // hay que encontrar el Id del nombre de esa web, para eso hay que buscarla en la lista.
-        //Como hay muchas webs, empezamos en la mistad de la lista y comprobamos por que letra empiezan las webs, si nuestra
+        //Como hay muchas webs, empezamos en la mitad de la lista y comprobamos por que letra empiezan las webs, si nuestra
         //web coincide con esa letra, se comprobara la siguiente letra
-        //Si no coincide y es mas pequeña obtenemos la nueva lista formada por todos los elementos a la izquierda y se vuelve a implemetar
+        //Si no coincide y es mas pequeña obtenemos la nueva lista formada por todos los elementos a la izquierda y se vuelve a implementar
         //Lo mismo en caso de que sea mayor
-
         return buscarWebPorNombre(lista, 0, lista.toArray().length, pNombre, 0);
     }
 
@@ -207,8 +206,7 @@ public class ListaWebs
     }
     public Integer string2Id(String pNombre)
     {
-
-        return null;
+        return buscarWebPorString(pNombre).getId();
     }
     public String id2String(Integer pId)
     {
