@@ -1,5 +1,7 @@
+import javax.swing.*;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.random.RandomGenerator;
 
 public class ListaWebs
 {
@@ -36,7 +38,16 @@ public class ListaWebs
     }
     private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
     {
-        Integer pivote = laLista.get(fin).getId();
+        Random aleatorio = new Random();
+        Integer pivote;
+        if (fin==0)
+        {
+            pivote = aleatorio.nextInt(fin);
+        }
+        else
+        {
+            pivote = aleatorio.nextInt(fin-1);
+        }
         Integer indice = (inicio-1);
         // empezamos el bucle
         for (Integer indice2 = inicio; indice2<fin; indice2++)
@@ -44,6 +55,7 @@ public class ListaWebs
             if (laLista.get(indice2).getId()<=pivote)
             {
                 indice++;
+                System.out.println(indice);
                 intercambiar(laLista, indice, indice2);
             }
         }
@@ -53,7 +65,6 @@ public class ListaWebs
     public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
             // aqui haremos el quicksort usando recursividad
     {
-        System.out.println(inicio);
         if (inicio<fin)
         {
             // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
@@ -73,6 +84,11 @@ public class ListaWebs
     }
     //Fin quicksort
 
+    // intentar probar otro tipo de ordenar
+    public void ordenarWebs2()
+    {
+        lista.sort(Comparator.comparing(Web::getId));
+    }
     public ArrayList<Web> getLista()
     {
         return this.lista;
@@ -81,11 +97,19 @@ public class ListaWebs
 
     public void insertarWeb(Web pWeb)
     {
-        this.lista.add(pWeb);
-        //this.ordenarWebs();
-
+        lista.add(pWeb);
     }
-
+    public void anadirWeb(Web pWeb)
+    {
+        if (lista.contains(pWeb))
+        {
+            System.out.println("La web ya está en la lista.");
+        }
+        else
+        {
+            lista.add(pWeb);
+        }
+    }
     public void anadirRelacion(Integer id, ArrayList<Integer> relaciones)
     {
         // hay que añadir una las relaciones de la web, a la web posicionada en la posicion index de la lista

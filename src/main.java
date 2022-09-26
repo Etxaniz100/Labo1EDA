@@ -28,9 +28,11 @@ public class main {
 
         // Prueba quicksort
         // Para probar el quicksort necesitamos añadir algunos elementos a la lista y borrar otros, para conseguir ver si el quicksort es efectivo.
-        ListaWebs.getMiListaWebs().insertarWeb(new Web("buenosdias.com", 2));
+        Web unaWeb = new Web("0-a-az.ser", 1);
+        ListaWebs.getMiListaWebs().insertarWeb(unaWeb);
+        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
         ListaWebs.getMiListaWebs().ordenarWebs();
-        System.out.println(ListaWebs.getMiListaWebs().getLista().get(2).getNombre());
+        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-a-az.ser"));
         // Prueba buscarWebPorString
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId()); // Una web aleatoria
