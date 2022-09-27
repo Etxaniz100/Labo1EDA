@@ -1,6 +1,8 @@
 
 import javax.print.DocFlavor;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,13 +27,15 @@ public class main {
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
         main.getMiMain().cargarListaRelaciones( path.toAbsolutePath().toString() + "\\src\\pld-arcs-1-N-2022-2023");
         main.getMiMain().cargarListaPalabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
+        ListaWebs.getMiListaWebs().insertarWeb(new Web("UwU.com", 2));
+        main.getMiMain().guardarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
 
         // Prueba quicksort
         // Para probar el quicksort necesitamos añadir algunos elementos a la lista y borrar otros, para conseguir ver si el quicksort es efectivo.
-        Web unaWeb = new Web("0-a-az.ser", 1);
-        ListaWebs.getMiListaWebs().insertarWeb(unaWeb);
+        //Web unaWeb = new Web("0-a-az.ser", 1);
+        //ListaWebs.getMiListaWebs().insertarWeb(unaWeb);
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
-        ListaWebs.getMiListaWebs().ordenarWebs();
+        //ListaWebs.getMiListaWebs().ordenarWebs();
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-a-az.ser"));
         // Prueba buscarWebPorString
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
@@ -160,5 +164,26 @@ public class main {
             e.printStackTrace();
         }
         System.out.println("Lista relaciones cargada");
+    }
+
+    public void guardarListaIndex(String nomF){
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(nomF));
+            //bw.write(Jugador.getMiJugador().getNombre());
+            //ListaWebs.getMiListaWebs().ordenarWebs();
+            ArrayList<Web> listaWeb = ListaWebs.getMiListaWebs().getLista();
+            Integer cont = 0;
+            Web webActual;
+            while (cont < listaWeb.toArray().length){
+                webActual = listaWeb.get(cont);
+                bw.write(webActual.getId().toString() + ":" + webActual.getNombre());
+                cont ++;
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+
+        }
     }
 }

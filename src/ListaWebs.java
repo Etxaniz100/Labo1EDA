@@ -1,7 +1,5 @@
-import javax.swing.*;
 import java.lang.reflect.Array;
 import java.util.*;
-import java.util.random.RandomGenerator;
 
 public class ListaWebs
 {
@@ -40,6 +38,7 @@ public class ListaWebs
     {
         Random aleatorio = new Random();
         Integer pivote;
+        //System.out.println(fin);
         if (fin==0)
         {
             pivote = aleatorio.nextInt(fin);
@@ -55,7 +54,7 @@ public class ListaWebs
             if (laLista.get(indice2).getId()<=pivote)
             {
                 indice++;
-                System.out.println(indice);
+                //System.out.println(indice);
                 intercambiar(laLista, indice, indice2);
             }
         }
@@ -65,6 +64,7 @@ public class ListaWebs
     public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
             // aqui haremos el quicksort usando recursividad
     {
+        System.out.println(inicio);
         if (inicio<fin)
         {
             // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
@@ -145,7 +145,8 @@ public class ListaWebs
         return buscarWebPorNombre(lista, 0, lista.toArray().length, pNombre, 0);
     }
 
-    public Web buscarWebPorNombre(ArrayList<Web> lista, Integer inicio, Integer fin, String nombre, Integer caracter){
+    public Web buscarWebPorNombre(ArrayList<Web> lista, Integer inicio, Integer fin, String nombre, Integer caracter)
+    {
         //System.out.println("Inicio");
         Integer indxComprobador;
         //Obtenemos el index que este en medio de la lista
