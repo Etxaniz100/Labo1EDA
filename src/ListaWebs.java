@@ -20,12 +20,6 @@ public class ListaWebs
         }
         return miListaWebs;
     }
-
-    private Iterator<Web> getIterator()
-    {
-        return this.lista.iterator();
-    }
-
     // métodos para el quicksort:
     public void intercambiar(ArrayList<Web> laLista, Integer i, Integer j)
     {
@@ -36,25 +30,40 @@ public class ListaWebs
     }
     private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
     {
-        Random aleatorio = new Random();
-        Integer pivote;
+        // tenemos que hacer que el pivote sea aleatorio dentro de un rango, ya que si la lista estuviese ordenada tardaría n^2 de media, cosa que es inaceptable.
+        //Random aleatorio = new Random();
+        //Integer pivote;
         //System.out.println(fin);
-        if (fin==0)
+        // if (fin==0)
+            //{
+            //     pivote = aleatorio.nextInt(fin);
+            // }
+        //else
+            // {
+            //    pivote = aleatorio.nextInt(fin-1);
+            //    if (pivote<0)
+        //    {
+        //        pivote = aleatorio.nextInt(fin);
+        //    }
+        //}
+        //Integer indice = (inicio-1);
+        // manera 2, hacer que el pivote sea el elemento del medio del array
+        Integer indice = (inicio-1);
+        Integer pivote;
+        if ((fin-inicio) % 2 == 0)
         {
-            pivote = aleatorio.nextInt(fin);
+            pivote = (fin-inicio)/2;
         }
         else
         {
-            pivote = aleatorio.nextInt(fin-1);
+            pivote = ((fin-inicio)+1)/2;
         }
-        Integer indice = (inicio-1);
         // empezamos el bucle
         for (Integer indice2 = inicio; indice2<fin; indice2++)
         {
             if (laLista.get(indice2).getId()<=pivote)
             {
                 indice++;
-                //System.out.println(indice);
                 intercambiar(laLista, indice, indice2);
             }
         }
@@ -64,13 +73,15 @@ public class ListaWebs
     public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
             // aqui haremos el quicksort usando recursividad
     {
-        System.out.println(inicio);
         if (inicio<fin)
         {
             // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
             Integer indice = particion(laLista, inicio,fin);
             // y dividimos el problema en dos trozos, que se llamaran recursivamente y se irán ordenando
-            quicksort(laLista,inicio, indice-1);
+            if (inicio<indice)
+            {
+                quicksort(laLista,inicio, indice-1);
+            }
             quicksort(laLista, indice+1, fin );
         }
 
@@ -87,7 +98,9 @@ public class ListaWebs
     // intentar probar otro tipo de ordenar
     public void ordenarWebs2()
     {
-        lista.sort(Comparator.comparing(Web::getId));
+        // esta es otra manera de comparar, en la que usamos un comparator.
+        // coste lineal --> O(n*logn*c) donde c es el coste del comparator, que es despreciable, por tanto --> O(n*logn)
+        lista.sort(Comparator.comparing(Web::getNombre));
     }
     public ArrayList<Web> getLista()
     {
@@ -107,8 +120,10 @@ public class ListaWebs
         }
         else
         {
-            lista.add(pWeb);
+            insertarWeb(pWeb);
         }
+        // este método ordena la lista usando el objeto comparator, respecto a su nombre.
+        this.ordenarWebs2();
     }
     public void anadirRelacion(Integer id, ArrayList<Integer> relaciones)
     {
@@ -142,7 +157,7 @@ public class ListaWebs
         //web coincide con esa letra, se comprobara la siguiente letra
         //Si no coincide y es mas pequeña obtenemos la nueva lista formada por todos los elementos a la izquierda y se vuelve a implementar
         //Lo mismo en caso de que sea mayor
-        return buscarWebPorNombre(lista, 0, lista.toArray().length, pNombre, 0);
+        return buscarWebPorNombre(lista, 0, lista.size(), pNombre, 0);
     }
 
     public Web buscarWebPorNombre(ArrayList<Web> lista, Integer inicio, Integer fin, String nombre, Integer caracter)
@@ -219,7 +234,6 @@ public class ListaWebs
             }
 
                 //En este caso la primera letra coincide
-
         }
         else if (nombreSeparador.charAt(caracter) > nombre.charAt(caracter))
         {
@@ -236,9 +250,7 @@ public class ListaWebs
             devolver = buscarWebPorNombre(lista, indxComprobador+1, fin, nombre, caracter);
             //System.out.println("Salimos de la recursividad izquierda con la web : " + devolver.getNombre());
         }
-
         return devolver;
-
     }
     public Integer string2Id(String pNombre)
     {
