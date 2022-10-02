@@ -20,6 +20,7 @@ public class ListaWebs
         }
         return miListaWebs;
     }
+
     // métodos para el quicksort:
     public void intercambiar(ArrayList<Web> laLista, Integer i, Integer j)
     {
@@ -71,8 +72,8 @@ public class ListaWebs
         return (indice+1);
     }
     public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
-            // aqui haremos el quicksort usando recursividad
     {
+            // aqui haremos el quicksort usando recursividad
         if (inicio<fin)
         {
             // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
@@ -283,6 +284,45 @@ public class ListaWebs
             System.out.println("La web no se encuentra en la lista");
         }
         return (nom);
+    }
+
+    private Iterator<Web> getIterador(){
+        return this.lista.iterator();
+    }
+    public ArrayList<String> word2Webs(String s){
+        //En este metodo dada una palabra (que este en la lista de palabras, aunque no es necesario) devuelve una lista con las webs que la contengan en el nombre
+        Iterator<Web> itr = this.getIterador();
+        Web webActual = null;
+        ArrayList<String> listaReturn = new ArrayList<String>();
+        String nombre;
+        while (itr.hasNext()){
+            nombre = itr.next().getNombre();
+            if (nombre.contains(s)){
+                listaReturn.add(nombre);
+                System.out.println(nombre);
+            }
+
+        }
+        return listaReturn;
+    }
+
+    public ArrayList<String> web2Words(String w){
+        Web web = buscarWebPorString(w);
+        ArrayList<String> listaReturn = new ArrayList<String>();
+        Integer lengh = ListaPalabras.getMiListaPalabras().getLength();
+        Integer cont = 0;
+        String word;
+        while (cont < lengh){
+            word = ListaPalabras.getMiListaPalabras().obtenerPalabra(cont);
+            if (web.getNombre().contains(word)){
+                listaReturn.add(word);
+                System.out.println("Contador = " + cont + ", palabra = " + word);
+            }
+            cont ++;
+        }
+
+
+        return listaReturn;
     }
 
 

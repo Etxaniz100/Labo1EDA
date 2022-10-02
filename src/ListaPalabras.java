@@ -35,4 +35,8 @@ public class ListaPalabras
     {
         return this.listaPalabras.get(id);
     }
+
+    public Integer getLength(){
+        return listaPalabras.size();
+    }
 }
