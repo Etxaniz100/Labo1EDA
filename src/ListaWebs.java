@@ -291,6 +291,7 @@ public class ListaWebs
     }
     public ArrayList<String> word2Webs(String s){
         //En este metodo dada una palabra (que este en la lista de palabras, aunque no es necesario) devuelve una lista con las webs que la contengan en el nombre
+        //Se usa el iterador para recorrer facilmente toda la lista de webs.
         Iterator<Web> itr = this.getIterador();
         Web webActual = null;
         ArrayList<String> listaReturn = new ArrayList<String>();
@@ -301,27 +302,25 @@ public class ListaWebs
                 listaReturn.add(nombre);
                 System.out.println(nombre);
             }
-
         }
         return listaReturn;
     }
 
-    public ArrayList<String> web2Words(String w){
-        Web web = buscarWebPorString(w);
+    public ArrayList<String> web2Words(String pWeb)
+    {
+        Web laWeb = buscarWebPorString(pWeb);
         ArrayList<String> listaReturn = new ArrayList<String>();
-        Integer lengh = ListaPalabras.getMiListaPalabras().getLength();
+        Integer length = ListaPalabras.getMiListaPalabras().getLength();
         Integer cont = 0;
-        String word;
-        while (cont < lengh){
-            word = ListaPalabras.getMiListaPalabras().obtenerPalabra(cont);
-            if (web.getNombre().contains(word)){
-                listaReturn.add(word);
-                System.out.println("Contador = " + cont + ", palabra = " + word);
+        String palabra;
+        while (cont < length){
+            palabra = ListaPalabras.getMiListaPalabras().obtenerPalabra(cont);
+            if (laWeb.getNombre().contains(palabra)){
+                listaReturn.add(palabra);
+                System.out.println("Contador = " + cont + ", palabra = " + palabra);
             }
             cont ++;
         }
-
-
         return listaReturn;
     }
 

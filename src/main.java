@@ -27,19 +27,16 @@ public class main {
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
         main.getMiMain().cargarListaRelaciones( path.toAbsolutePath().toString() + "\\src\\pld-arcs-1-N-2022-2023");
         main.getMiMain().cargarListaPalabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
-        System.out.println("Comienza la busqueda");
-        //ListaWebs.getMiListaWebs().word2Webs("platypus");
-        ListaWebs.getMiListaWebs().web2Words(ListaWebs.getMiListaWebs().word2Webs("platypus").get(0));
         //ListaWebs.getMiListaWebs().insertarWeb(new Web("UwU.com", 2));
         //main.getMiMain().guardarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
 
         // Prueba quicksort
         // Para probar el quicksort necesitamos añadir algunos elementos a la lista y borrar otros, para conseguir ver si el quicksort es efectivo.
         // realmente no es necesario implementar el quicksort ya que tenemos el método .sort que usa un comparator, que probablemente sea mas eficiente.
-        //ListaWebs.getMiListaWebs().anadirWeb(new Web("buenosdias.com", 48122));
+        ListaWebs.getMiListaWebs().anadirWeb(new Web("buenosdias.com", 48122));
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
         //ListaWebs.getMiListaWebs().ordenarWebs2();
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
+        System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
 
         // Prueba buscarWebPorString
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
@@ -170,7 +167,8 @@ public class main {
         System.out.println("Lista relaciones cargada");
     }
 
-    public void guardarListaIndex(String nomF){
+    public void guardarListaIndex(String nomF)
+    {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(nomF));
@@ -186,8 +184,10 @@ public class main {
                 bw.newLine();
             }
             bw.close();
-        } catch (IOException e) {
-
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }
