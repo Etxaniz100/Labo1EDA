@@ -30,7 +30,7 @@ public class Web
     {
         return (this.nombre);
     }
-    public ArrayList<Integer> getRelaciones()
+    public ArrayList<Integer> enlacesSalientes()
     {
         return (this.listaRelaciones);
     }
