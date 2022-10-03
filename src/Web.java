@@ -6,7 +6,7 @@ public class Web
     // los tres atributos que usamos son el nombre de la web, el identificador y la lista de las relaciones que esta tiene con las demás
     private String nombre;
     private Integer id;
-    private ArrayList<Integer> listaRelaciones;
+    private ArrayList<Web> listaRelaciones;
 
     // la constructora que usaremos en la mayoría de los casos
     public Web(String pNombre, Integer pId)
@@ -16,7 +16,7 @@ public class Web
     }
     // esta constructora se usaría en caso de que tendríamos todos los datos de entrada, pero como por lo general tendremos
     // solo el id y el nombre cuando creemos el objeto web, no la utilizaremos.
-    public Web(String pNombre, Integer pId, ArrayList<Integer> pLista)
+    public Web(String pNombre, Integer pId, ArrayList<Web> pLista)
     {
         this.id = pId;
         this.nombre = pNombre;
@@ -30,7 +30,7 @@ public class Web
     {
         return (this.nombre);
     }
-    public ArrayList<Integer> enlacesSalientes()
+    public ArrayList<Web> enlacesSalientes()
     {
         return (this.listaRelaciones);
     }
@@ -38,7 +38,7 @@ public class Web
     {
         this.id= pId;
     }
-    public void editarLista(ArrayList<Integer> pLista)
+    public void editarLista(ArrayList<Web> pLista)
     {
         this.listaRelaciones = pLista;
     }

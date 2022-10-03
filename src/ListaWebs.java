@@ -126,7 +126,7 @@ public class ListaWebs
         // este método ordena la lista usando el objeto comparator, respecto a su nombre.
         this.ordenarWebs2();
     }
-    public void anadirRelacion(Integer id, ArrayList<Integer> relaciones)
+    public void anadirRelacion(Integer id, ArrayList<Web> relaciones)
     {
         // hay que añadir una las relaciones de la web, a la web posicionada en la posicion index de la lista
         this.lista.get(id).editarLista(relaciones);
