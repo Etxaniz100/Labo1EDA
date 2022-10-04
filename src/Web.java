@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Web
 {
@@ -41,6 +42,10 @@ public class Web
     public void editarLista(ArrayList<Web> pLista)
     {
         this.listaRelaciones = pLista;
+    }
+    public Iterator<Web> getIterator()
+    {
+        return this.getIterator();
     }
 
 }

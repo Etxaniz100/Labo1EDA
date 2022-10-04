@@ -196,6 +196,7 @@ public class main {
 
     public void guardarRelaciones(String nomF)
     {
+        // abrimos el bufferedwriter que es el objeto que nos deja escribir en un fichero de texto.
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(nomF));
@@ -209,11 +210,11 @@ public class main {
                 webActual = listaWeb.get(cont);
                 listaRelaciones = webActual.enlacesSalientes();
                 bw.write(webActual.getId().toString() + " --> ");
-                if (listaRelaciones.hasNext()){
-                    bw.write(listaRelaciones.next().getId().toString());
+                if (listaRelaciones.iterator().hasNext()){
+                    bw.write(listaRelaciones.iterator().next().getId().toString());
                 }
-                while (listaRelaciones.hasNext()){
-                    bw.write(" ### " + listaRelaciones.next().getId().toString());
+                while (listaRelaciones.iterator().hasNext()){
+                    bw.write(" ### " + listaRelaciones.iterator().next().getId().toString());
                 }
                 cont ++;
                 bw.newLine();
