@@ -81,7 +81,8 @@ public class main {
         return (miMain);
     }
 
-    public void cargarListaIndex(String nomF){
+    public void cargarListaIndex(String nomF)
+    {
         //Coste operativo : O(n) --> Lineal
         System.out.println("Cargando lista index");
         try{
@@ -101,7 +102,8 @@ public class main {
 
     }
 
-    public void cargarListaPalabras(String nomF){
+    public void cargarListaPalabras(String nomF)
+    {
         //Coste operativo : O(n) --> Lineal
 
         System.out.println("Cargando lista palabras");
@@ -126,7 +128,8 @@ public class main {
         System.out.println("Lista palabras cargada");
     }
 
-    public void cargarListaRelaciones(String nomF){
+    public void cargarListaRelaciones(String nomF)
+    {
         //Coste operativo de esto : n * media de relaciones entre webs, pero no es mucho entonces O(n) --> coste lineal
 
         System.out.println("Cargando lista relaciones");
@@ -180,6 +183,38 @@ public class main {
             while (cont < listaWeb.toArray().length){
                 webActual = listaWeb.get(cont);
                 bw.write(webActual.getId().toString() + ":" + webActual.getNombre());
+                cont ++;
+                bw.newLine();
+            }
+            bw.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void guardarRelaciones(String nomF)
+    {
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(nomF));
+            //bw.write(Jugador.getMiJugador().getNombre());
+            //ListaWebs.getMiListaWebs().ordenarWebs();
+            ArrayList<Web> listaWeb = ListaWebs.getMiListaWebs().getLista();
+            ArrayList<Web> listaRelaciones;
+            Integer cont = 0;
+            Web webActual;
+            while (cont < listaWeb.toArray().length){
+                webActual = listaWeb.get(cont);
+                listaRelaciones = webActual.enlacesSalientes();
+                bw.write(webActual.getId().toString() + " --> ");
+                if (listaRelaciones.hasNext()){
+                    bw.write(listaRelaciones.next().getId().toString());
+                }
+                while (listaRelaciones.hasNext()){
+                    bw.write(" ### " + listaRelaciones.next().getId().toString());
+                }
                 cont ++;
                 bw.newLine();
             }
