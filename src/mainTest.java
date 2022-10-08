@@ -26,15 +26,16 @@ class mainTest
         // cargar una lista vacía
         assertTrue((ListaWebs.getMiListaWebs().getLista().isEmpty()));
             // subcaso 1, buscar un elemento que no esta
-        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com"));
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdddias.com"));
         // CASO 2
         // cargar una lista que solo tiene un elemento
-        main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebatxt");
-        System.out.println("Se carga el archivo: " + "pruebatxt");
+        main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\prueba1elemento");
+        System.out.println("Se carga el archivo: " + "prueba1elemento");
         assertFalse((ListaWebs.getMiListaWebs().getLista().isEmpty()));
             // subcaso 1, buscar el primer elemento
-        assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equals("abex.pl"));
-            // subcaso 4, buscar un elemento que no esta
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equals("hola.as"));
+            // subcaso 2, buscar un elemento que no esta
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdddias.com"));
         // CASO 3
         // cargar una lista con varios elementos
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebatxt");
@@ -47,7 +48,7 @@ class mainTest
             // subcaso 3, buscar un elemento del medio
         assertTrue(ListaWebs.getMiListaWebs().getLista().get(1).getNombre().equals("gertu.eus"));
             // subcaso 4, buscar un elemento que no esta
-        //assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com"));
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdddias.com"));
         // CASO 4
         // cargar la lista con todos los elementos
         ListaWebs.getMiListaWebs().borrarLista();
@@ -59,42 +60,51 @@ class mainTest
             // subcaso 2, buscar el ultimo elemento
         assertTrue(ListaWebs.getMiListaWebs().getLista().get(ListaWebs.getMiListaWebs().getLista().size()-1).getNombre().equals("zzzz6666.com"));
             // subcaso 3, buscar un elemento del medio
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(544425).getNombre().equals("dsw.edu.pl"));
         // subcaso 4, buscar un elemento que no esta
-
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
-        // Prueba buscarWebPorString
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId()); // Una web aleatoria
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("zzzz6666.com").getId());  // Ultima web
-
-        // Prueba string2Id
-        //System.out.println(ListaWebs.getMiListaWebs().string2Id("0-00.pl")); // La primera web
-        //System.out.println(ListaWebs.getMiListaWebs().string2Id("willcom.gr.jp")); // Una web aleatoria
-        //System.out.println(ListaWebs.getMiListaWebs().string2Id("zzzz6666.com"));  // Ultima web
-
-        // Prueba borrarWeb
-        //Web unaWeb = ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp");
-        //ListaWebs.getMiListaWebs().borrarWeb(unaWeb);
-        //Web laWeb = ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp"); // como vemos, va a ser null ya que hemos borrado la web
-        // aqui hariamos un assetnull en las J-Units
-
-        // Pruebas de IMPORTACION DE FICHEROS
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdddias.com"));
     }
 
     @org.junit.jupiter.api.Test
-    void cargarListaPalabras() {
+    void cargarListaPalabras()
+    {
+        Path path = Paths.get("");
+        // CASOS DE PRUEBA
+        // CASO 1
+        // cargar una lista vacía
+        main.getMiMain().cargarListaPalabras(path.toAbsolutePath().toString() + "\\src\\pruebavacia");
+        assertTrue((ListaPalabras.getMiListaPalabras().getListaPalabras().isEmpty()));
+            // subcaso 1, buscar un elemento que no esta
+        assertNull(ListaPalabras.getMiListaPalabras().obtenerPalabra(0));
+        ListaPalabras.getMiListaPalabras().borrarLista();
+        // CASO 2
+        // cargar una lista que solo tiene un elemento
+        main.getMiMain().cargarListaPalabras( path.toAbsolutePath().toString() + "\\src\\prueba1elemento");
+        assertFalse((ListaPalabras.getMiListaPalabras().getListaPalabras().isEmpty()));
+            // subcaso 1, buscar un elemento que esta
+        assertEquals(ListaPalabras.getMiListaPalabras().obtenerPalabra(0), "0:hola.as");
+            // subcaso 2, buscar un elemento que no esta
+        assertNull(ListaPalabras.getMiListaPalabras().obtenerPalabra(78));
+        ListaPalabras.getMiListaPalabras().borrarLista();
+        // CASO 3
+        // cargar una lista con varios elementos
+        main.getMiMain().cargarListaPalabras( path.toAbsolutePath().toString() + "\\src\\pruebatxt");
+        assertFalse((ListaPalabras.getMiListaPalabras().getListaPalabras().isEmpty()));
+            // subcaso 1, buscar un elemento que esta al principio
+        assertEquals(ListaPalabras.getMiListaPalabras().obtenerPalabra(0), "0:abex.pl");
+            // subcaso 2, buscar un elemento que esta al final
+        assertEquals(ListaPalabras.getMiListaPalabras().obtenerPalabra(2), "2:merto.al");
+            // subcaso 2, buscar un elemento que no esta
+        assertNull(ListaPalabras.getMiListaPalabras().obtenerPalabra(852));
     }
 
     @org.junit.jupiter.api.Test
-    void cargarListaRelaciones() {
+    void cargarListaRelaciones()
+    {
     }
 
     @org.junit.jupiter.api.Test
-    void guardarListaIndex() {
+    void guardarListaIndex()
+    {
     }
 }

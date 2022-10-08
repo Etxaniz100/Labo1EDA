@@ -189,13 +189,14 @@ public class ListaWebs
         {
             buscando = false;
         }
-        if (!buscando)
+        if (!buscando || (fin-inicio)<0)
         {
             System.out.println("Fuera de rango!");
             devolver = null;
         }
         else
         {
+            buscando = true;
             String nombreSeparador;
             nombreSeparador = lista.get(indxComprobador).getNombre();
             //Ahora comparamos la primera letra
@@ -203,36 +204,44 @@ public class ListaWebs
                 //En este caso la primera letra coincide
                 //System.out.println("La letra coincide");
                 //System.out.println("Palabra actual : " + nombreSeparador);
-                if (nombreSeparador == nombre) {
+                if (nombreSeparador == nombre)
+                {
                     //System.out.println("La palabra coincide");
                     buscando = false;
                     //Pasa hasta el return
-                } else if (nombreSeparador.charAt(1) >= nombre.charAt(1)) {
+                }
+                else if (nombreSeparador.charAt(1) >= nombre.charAt(1)) {
                     //System.out.println("Entramos en bucle hacia la izquierda");
                     //Mientras que la primera letra de la palabra coincida y no se haya encontrado
-                    while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando) {
+                    while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando)
+                    {
                         //Buscamos hacia la izquierda
                         //System.out.println("Disminuimos el indx");
                         indxComprobador--;
                         //System.out.println("Indx : " + indxComprobador);
                         nombreSeparador = lista.get(indxComprobador).getNombre();
                         //System.out.println("Palabra actual : " + nombreSeparador + ".");
-                        if (Objects.equals(nombreSeparador, nombre)) {
+                        if (Objects.equals(nombreSeparador, nombre))
+                        {
                             //System.out.println("La palabra coincide");
                             devolver = lista.get(indxComprobador);
                             buscando = false;
                         }
                     }
-                } else {
+                }
+                else
+                {
                     //System.out.println("Entramos en bucle hacia la derecha");
-                    while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando) {
+                    while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando)
+                    {
                         //Buscamos hacia la derecha
                         //System.out.println("Aumentamos el indx");
                         indxComprobador++;
                         //System.out.println("Indx : " + indxComprobador);
                         nombreSeparador = lista.get(indxComprobador).getNombre();
                         //System.out.println("Palabra actual : " + nombreSeparador + ".");
-                        if (Objects.equals(nombreSeparador, nombre)) {
+                        if (Objects.equals(nombreSeparador, nombre))
+                        {
                             //System.out.println("La palabra coincide");
                             devolver = lista.get(indxComprobador);
                             buscando = false;
