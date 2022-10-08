@@ -21,33 +21,43 @@ class mainTest
         //cargarListaIndex();
         // CASOS DE PRUEBA
         // CASO 1
+        main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebavacia");
+        System.out.println("Se carga el archivo: " + "pruebavacia");
         // cargar una lista vacía
+        assertTrue((ListaWebs.getMiListaWebs().getLista().isEmpty()));
             // subcaso 1, buscar un elemento que no esta
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com"));
         // CASO 2
         // cargar una lista que solo tiene un elemento
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebatxt");
+        System.out.println("Se carga el archivo: " + "pruebatxt");
         assertFalse((ListaWebs.getMiListaWebs().getLista().isEmpty()));
             // subcaso 1, buscar el primer elemento
-        assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equalsIgnoreCase("abex.pl"));
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equals("abex.pl"));
             // subcaso 4, buscar un elemento que no esta
         // CASO 3
         // cargar una lista con varios elementos
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebatxt");
+        System.out.println("Se carga el archivo: " + "pruebatxt");
         assertFalse((ListaWebs.getMiListaWebs().getLista().isEmpty()));
             // subcaso 1, buscar el primer elemento
-        assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equalsIgnoreCase("abex.pl"));
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equals("abex.pl"));
             // subcaso 2, buscar el ultimo elemento
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(2).getNombre().equals("merto.al"));
             // subcaso 3, buscar un elemento del medio
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(1).getNombre().equals("gertu.eus"));
             // subcaso 4, buscar un elemento que no esta
+        //assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com"));
         // CASO 4
         // cargar la lista con todos los elementos
         ListaWebs.getMiListaWebs().borrarLista();
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
+        System.out.println("Se carga el archivo: " + "index-2022-2023");
         assertFalse((ListaWebs.getMiListaWebs().getLista().isEmpty()));
             // subcaso 1, buscar el primer elemento
         assertTrue(ListaWebs.getMiListaWebs().getLista().get(0).getNombre().equals("0-00.pl"));
             // subcaso 2, buscar el ultimo elemento
-        assertTrue(ListaWebs.getMiListaWebs().getLista().get(ListaWebs.getMiListaWebs().getLista().size()-1).getNombre().equalsIgnoreCase("zzzz6666.com"));
+        assertTrue(ListaWebs.getMiListaWebs().getLista().get(ListaWebs.getMiListaWebs().getLista().size()-1).getNombre().equals("zzzz6666.com"));
             // subcaso 3, buscar un elemento del medio
         // subcaso 4, buscar un elemento que no esta
 
