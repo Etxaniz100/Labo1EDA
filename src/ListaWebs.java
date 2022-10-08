@@ -181,7 +181,15 @@ public class ListaWebs
         //Obtenemos el nombre de esa web
         Web devolver = null;
         boolean buscando = true;
-        if (lista.get(indxComprobador)==null)
+        try
+        {
+            lista.get(indxComprobador);
+        }
+        catch (IndexOutOfBoundsException ioobe)
+        {
+            buscando = false;
+        }
+        if (!buscando)
         {
             System.out.println("Fuera de rango!");
             devolver = null;
