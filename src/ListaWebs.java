@@ -122,9 +122,9 @@ public class ListaWebs
         else
         {
             insertarWeb(pWeb);
+            this.ordenarWebs2();
         }
-        // este método ordena la lista usando el objeto comparator, respecto a su nombre.
-        this.ordenarWebs2();
+        // este método ordena la lista usando el objeto comparator, respecto a su nombre
     }
     public void anadirRelacion(Integer id, ArrayList<Web> relaciones)
     {
@@ -286,7 +286,8 @@ public class ListaWebs
         return (nom);
     }
 
-    private Iterator<Web> getIterador(){
+    private Iterator<Web> getIterador()
+    {
         return this.lista.iterator();
     }
     public ArrayList<String> word2Webs(String s){
@@ -322,6 +323,10 @@ public class ListaWebs
             cont ++;
         }
         return listaReturn;
+    }
+    public void borrarLista()
+    {
+        lista = new ArrayList<Web>();
     }
 
 

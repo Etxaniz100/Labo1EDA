@@ -29,7 +29,7 @@ public class main {
         main.getMiMain().cargarListaPalabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
         //ListaWebs.getMiListaWebs().insertarWeb(new Web("UwU.com", 2));
         //main.getMiMain().guardarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
-        ListaWebs.getMiListaWebs().word2Webs("argentina");
+        //ListaWebs.getMiListaWebs().word2Webs("argentina");
         // Prueba quicksort
         // Para probar el quicksort necesitamos añadir algunos elementos a la lista y borrar otros, para conseguir ver si el quicksort es efectivo.
         // realmente no es necesario implementar el quicksort ya que tenemos el método .sort que usa un comparator, que probablemente sea mas eficiente.
@@ -175,8 +175,6 @@ public class main {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(nomF));
-            //bw.write(Jugador.getMiJugador().getNombre());
-            //ListaWebs.getMiListaWebs().ordenarWebs();
             ArrayList<Web> listaWeb = ListaWebs.getMiListaWebs().getLista();
             Integer cont = 0;
             Web webActual;
