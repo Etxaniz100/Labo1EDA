@@ -211,15 +211,40 @@ class ListaWebsTest {
     @Test
     void buscarWebPorString()
     {
-        // este metodo llama al metodo buscarWebPorNombre, por lo tanto
-        // no es necesario comprobar su funcionamiento, ya que lo
-        // vamos a probar indirectamente en el siguiente test.
+        // CASOS DE PRUEBA
+        Web laWeb = new Web("buenas.ad", 0);
+        Web web1 = new Web("sadads.yt", 1);
+        Web web2 = new Web("dfadfads.ds", 2);
+        // CASO 1 buscar una web en una lista vacia
+        ListaWebs.getMiListaWebs().borrarLista();
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString(laWeb.getNombre()));
+        // CASO 2 lista de un elemento
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        // subcaso 1 buscar la web que esta en la lista
+        assertEquals(ListaWebs.getMiListaWebs().buscarWebPorString("buenas.ad").getNombre(),"buenas.ad" );
+        // subcaso 2 buscar una web que no esta en la lista
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString(web1.getNombre()));
+        // CASO 3 lista de varios elementos
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().anadirWeb(web1);
+        ListaWebs.getMiListaWebs().anadirWeb(web2);
+        // subcaso 1 buscar la primera web
+        assertEquals(ListaWebs.getMiListaWebs().buscarWebPorString("buenas.ad").getNombre(),"buenas.ad" );
+        // subcaso 2 buscar la ultima web
+        assertEquals(ListaWebs.getMiListaWebs().buscarWebPorString("dfadfads.ds").getNombre(),"dfadfads.ds");
+        // subcaso 3 buscar una web del medio
+        assertEquals(ListaWebs.getMiListaWebs().buscarWebPorString("sadads.yt").getNombre(),"sadads.yt" );
+        // subcaso 4 buscar una web que no esta en la lista
+        System.out.println("assertNULL");
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("estawebnoexiste.com"));
     }
 
     @Test
     void buscarWebPorNombre()
     {
-        // CASOS DE PRUEBA
+        // su funcionamiento está probado mediante el anterior test
     }
 
     @Test
