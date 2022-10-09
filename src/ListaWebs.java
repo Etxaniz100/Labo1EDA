@@ -25,30 +25,22 @@ public class ListaWebs
     public void intercambiar(ArrayList<Web> laLista, Integer i, Integer j)
     {
         // aqui intercambiamos los elementos de la lista que nos interesen
-        Web aux = laLista.get(i);
-        laLista.set(i,laLista.get(j));
-        laLista.set(j,aux);
+        try
+        {
+            Web aux = laLista.get(i);
+            laLista.set(i,laLista.get(j));
+            laLista.set(j,aux);
+        }
+        catch(IndexOutOfBoundsException ioobe)
+        {
+            System.out.println("La lista es vacia");
+        }
+        catch (NullPointerException npe)
+        {
+        }
     }
     private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
     {
-        // tenemos que hacer que el pivote sea aleatorio dentro de un rango, ya que si la lista estuviese ordenada tardaría n^2 de media, cosa que es inaceptable.
-        //Random aleatorio = new Random();
-        //Integer pivote;
-        //System.out.println(fin);
-        // if (fin==0)
-            //{
-            //     pivote = aleatorio.nextInt(fin);
-            // }
-        //else
-            // {
-            //    pivote = aleatorio.nextInt(fin-1);
-            //    if (pivote<0)
-        //    {
-        //        pivote = aleatorio.nextInt(fin);
-        //    }
-        //}
-        //Integer indice = (inicio-1);
-        // manera 2, hacer que el pivote sea el elemento del medio del array
         Integer indice = (inicio-1);
         Integer pivote;
         if ((fin-inicio) % 2 == 0)
@@ -74,7 +66,7 @@ public class ListaWebs
     public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
     {
             // aqui haremos el quicksort usando recursividad
-        if (inicio<fin)
+        if ((inicio<fin) && (laLista.size()>1))
         {
             // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
             Integer indice = particion(laLista, inicio,fin);
@@ -85,7 +77,6 @@ public class ListaWebs
             }
             quicksort(laLista, indice+1, fin );
         }
-
     }
     public void ordenarWebs()
     {
@@ -129,7 +120,12 @@ public class ListaWebs
     public void anadirRelacion(Integer id, ArrayList<Web> relaciones)
     {
         // hay que añadir una las relaciones de la web, a la web posicionada en la posicion index de la lista
-        this.lista.get(id).editarLista(relaciones);
+        try
+        {
+            this.lista.get(id).editarLista(relaciones);
+        }
+        catch (NullPointerException npe){System.out.println("No se han anadido las relaciones");}
+        catch (IndexOutOfBoundsException ioobe){System.out.println("No se han anadido las relaciones");}
     }
     public void borrarWeb(Web pWeb)
     {
