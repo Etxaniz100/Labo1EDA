@@ -182,7 +182,7 @@ public class ListaWebs
         //System.out.println("La lista empieza en " + inicio + ", y acaba en " + fin + ". Entonces partimos en " + indxComprobador);
         //System.out.println("Tamaño de la lista : " + (fin - inicio));
         //Obtenemos el nombre de esa web
-        System.out.println(indxComprobador);
+        //System.out.println(indxComprobador);
         Web devolver = null;
         boolean buscando = true;
         try
@@ -195,7 +195,6 @@ public class ListaWebs
         }
         if (!buscando || (fin-inicio)<0)
         {
-            System.out.println("entra");
             System.out.println("Fuera de rango!");
             devolver = null;
         }
@@ -207,31 +206,31 @@ public class ListaWebs
             //Ahora comparamos la primera letra
             if (nombreSeparador.charAt(caracter) == nombre.charAt(caracter)) {
                 //En este caso la primera letra coincide
-                System.out.println("La letra coincide");
-                System.out.println("Palabra actual : " + nombreSeparador);
+                //System.out.println("La letra coincide");
+                //System.out.println("Palabra actual : " + nombreSeparador);
                 if (nombreSeparador == nombre)
                 {
-                    System.out.println(indxComprobador);
-                    System.out.println("La palabra coincide");
+                    //System.out.println(indxComprobador);
+                    //System.out.println("La palabra coincide");
                     devolver = lista.get(indxComprobador);
                     buscando = false;
                     //Pasa hasta el return
                 }
                 else if (nombreSeparador.charAt(1) >= nombre.charAt(1)) {
-                    System.out.println("Entramos en bucle hacia la izquierda");
+                    //System.out.println("Entramos en bucle hacia la izquierda");
                     //Mientras que la primera letra de la palabra coincida y no se haya encontrado
                     while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando)
                     {
                         //Buscamos hacia la izquierda
-                        System.out.println("Disminuimos el indx");
+                        //System.out.println("Disminuimos el indx");
                         indxComprobador--;
-                        System.out.println("Indx : " + indxComprobador);
+                        //System.out.println("Indx : " + indxComprobador);
                         nombreSeparador = lista.get(indxComprobador).getNombre();
-                        System.out.println("Palabra actual : " + nombreSeparador + ".");
+                        //System.out.println("Palabra actual : " + nombreSeparador + ".");
                         if (Objects.equals(nombreSeparador, nombre))
                         {
-                            System.out.println(indxComprobador);
-                            System.out.println("La palabra coincide");
+                            //System.out.println(indxComprobador);
+                            //System.out.println("La palabra coincide");
                             devolver = lista.get(indxComprobador);
                             buscando = false;
                         }
@@ -243,17 +242,17 @@ public class ListaWebs
                     while (nombreSeparador.charAt(0) == nombre.charAt(0) && buscando)
                     {
                         //Buscamos hacia la derecha
-                        System.out.println("Aumentamos el indx");
+                        //System.out.println("Aumentamos el indx");
                         indxComprobador++;
-                        System.out.println("Indx : " + indxComprobador);
+                        //System.out.println("Indx : " + indxComprobador);
                         nombreSeparador = lista.get(indxComprobador).getNombre();
-                        System.out.println("Palabra actual : " + nombreSeparador + ".");
+                        //System.out.println("Palabra actual : " + nombreSeparador + ".");
                         if (Objects.equals(nombreSeparador, nombre))
                         {
-                            System.out.println(indxComprobador);
-                            System.out.println("La palabra coincide");
+                            //System.out.println(indxComprobador);
+                            //System.out.println("La palabra coincide");
                             devolver = lista.get(indxComprobador);
-                            System.out.println(devolver);
+                            //System.out.println(devolver);
                             buscando = false;
                         }
                     }
@@ -264,32 +263,39 @@ public class ListaWebs
             else if (nombreSeparador.charAt(caracter) > nombre.charAt(caracter))
             {
                 //Crearemos la nueva lista con la primera mitad
-                System.out.println("La letra no coincide, partimos por la derecha");
+                //System.out.println("La letra no coincide, partimos por la derecha");
                 if (indxComprobador!=0)
                 {
-                    System.out.println("if");
+                    //System.out.println("if");
                     devolver = buscarWebPorNombre(lista, inicio, indxComprobador - 1, nombre, caracter);
+                }
+                else if (nombre.equals(lista.get(indxComprobador)))
+                {
+                    devolver = lista.get(indxComprobador);
                 }
                 else
                 {
-                    System.out.println("else");
-                    devolver = lista.get(indxComprobador);
+                    devolver = null;
                 }
-                System.out.println("Salimos de la recursividad derecha con la web : " + devolver.getNombre());
+                //System.out.println("Salimos de la recursividad derecha con la web : " + devolver.getNombre());
             }
             else
             {
                 //Crearemos la nueva lista con la segunda mitad
-                System.out.println("La letra no coincide, partimos por la izquierda");
+                //System.out.println("La letra no coincide, partimos por la izquierda");
                 if (indxComprobador != fin)
                 {
                     devolver = buscarWebPorNombre(lista, indxComprobador + 1, fin, nombre, caracter);
                 }
-                else
+                else if (nombre.equals(lista.get(indxComprobador)))
                 {
                     devolver = lista.get(indxComprobador);
                 }
-                System.out.println("Salimos de la recursividad izquierda con la web : " + devolver.getNombre());
+                else
+                {
+                    devolver = null;
+                }
+                //System.out.println("Salimos de la recursividad izquierda con la web : " + devolver.getNombre());
             }
         }
         return devolver;

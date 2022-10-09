@@ -211,6 +211,13 @@ class ListaWebsTest {
     @Test
     void buscarWebPorString()
     {
+        // este método llama al método buscarWebPorNombre, por tanto
+        // no es necesario hacer casos de prueba para este.
+    }
+
+    @Test
+    void buscarWebPorNombre()
+    {
         // CASOS DE PRUEBA
         Web laWeb = new Web("buenas.ad", 0);
         Web web1 = new Web("sadads.yt", 1);
@@ -237,14 +244,7 @@ class ListaWebsTest {
         // subcaso 3 buscar una web del medio
         assertEquals(ListaWebs.getMiListaWebs().buscarWebPorString("sadads.yt").getNombre(),"sadads.yt" );
         // subcaso 4 buscar una web que no esta en la lista
-        System.out.println("assertNULL");
         assertNull(ListaWebs.getMiListaWebs().buscarWebPorString("estawebnoexiste.com"));
-    }
-
-    @Test
-    void buscarWebPorNombre()
-    {
-        // su funcionamiento está probado mediante el anterior test
     }
 
     @Test
