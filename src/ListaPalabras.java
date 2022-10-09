@@ -33,10 +33,29 @@ public class ListaPalabras
     }
     public String obtenerPalabra(Integer id)
     {
-        return this.listaPalabras.get(id);
+        String devolver = null;
+        try
+        {
+            listaPalabras.get(id);
+            devolver = listaPalabras.get(id);
+        }
+        catch (IndexOutOfBoundsException ioobe)
+        {
+            System.out.println("No está la palabra en la lista");
+        }
+        return devolver;
     }
 
-    public Integer getLength(){
+    public Integer getLength()
+    {
         return listaPalabras.size();
+    }
+    public ArrayList<String> getListaPalabras()
+    {
+        return listaPalabras;
+    }
+    public void borrarLista()
+    {
+        listaPalabras = new ArrayList<String>();
     }
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class main {
@@ -196,24 +197,30 @@ public class main {
     {
         // abrimos el bufferedwriter que es el objeto que nos deja escribir en un fichero de texto.
         BufferedWriter bw;
-        try {
+        try
+        {
             bw = new BufferedWriter(new FileWriter(nomF));
-            //bw.write(Jugador.getMiJugador().getNombre());
             //ListaWebs.getMiListaWebs().ordenarWebs();
             ArrayList<Web> listaWeb = ListaWebs.getMiListaWebs().getLista();
             ArrayList<Web> listaRelaciones;
             Integer cont = 0;
             Web webActual;
-            while (cont < listaWeb.toArray().length){
+            while (cont < listaWeb.size())
+            {
+                System.out.println(cont);
                 webActual = listaWeb.get(cont);
                 listaRelaciones = webActual.enlacesSalientes();
-                bw.write(webActual.getId().toString() + " --> ");
+                bw.write(webActual.getId().toString() + " ---> ");
                 if (listaRelaciones.iterator().hasNext()){
                     bw.write(listaRelaciones.iterator().next().getId().toString());
                 }
-                while (listaRelaciones.iterator().hasNext()){
+                Iterator<Web> itr =  listaRelaciones.iterator();
+                while (itr.hasNext())
+                {
                     bw.write(" ### " + listaRelaciones.iterator().next().getId().toString());
+                    itr.next();
                 }
+
                 cont ++;
                 bw.newLine();
             }
@@ -222,6 +229,10 @@ public class main {
         catch (IOException e)
         {
             e.printStackTrace();
+        }
+        catch(NullPointerException npe)
+        {
+            System.out.println("La lista es vacía!");
         }
     }
 }
