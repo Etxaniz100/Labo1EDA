@@ -15,69 +15,8 @@ class ListaWebsTest {
     {
         // es un getter y por lo tanto no necesita casos de prueba.
     }
-
-    @Test
-    void intercambiar()
-    {
-        // CASOS DE PRUEBA
-        // CASO 1 que la lista este vacía
-        ArrayList<Web> laLista = new ArrayList<Web>();
-        assertTrue(laLista.isEmpty());
-        ListaWebs.getMiListaWebs().intercambiar(laLista,0,1);
-        // CASO 2 que la lista solo tenga 1 elemento
-        laLista.add(new Web("buenas.ad", 0));
-        assertFalse(laLista.isEmpty());
-        ListaWebs.getMiListaWebs().intercambiar(laLista,0,1);
-        // CASO 3 que la lista tenga dos elementos
-        assertFalse(laLista.isEmpty());
-        laLista.add(new Web("snayds.hf", 1));
-        ListaWebs.getMiListaWebs().intercambiar(laLista,0,1);
-        assertEquals(laLista.get(0).getNombre(),"snayds.hf");
-        // CASO 4 que la lista tenga mas de dos elementos
-        assertFalse(laLista.isEmpty());
-        laLista.add(new Web("lopez.sa", 2));
-        laLista.add(new Web("sinose.re", 3));
-        ListaWebs.getMiListaWebs().intercambiar(laLista,1,3);
-        assertEquals(laLista.get(1).getNombre(),"sinose.re");
-        assertEquals(laLista.get(3).getNombre(),"buenas.ad");
-    }
-
-    @Test
-    void quicksort()
-    {
-        // CASOS DE PRUEBA
-        // CASO 1 que la lista este vacía
-        ArrayList<Web> laLista = new ArrayList<Web>();
-        assertTrue(laLista.isEmpty());
-        ListaWebs.getMiListaWebs().quicksort(laLista, 0,3);
-        // CASO 2 que la lista solo tenga 1 elemento
-        laLista.add(new Web("buenas.ad", 0));
-        assertFalse(laLista.isEmpty());
-        ListaWebs.getMiListaWebs().quicksort(laLista, 0,3);
-        // CASO 3 que la lista tenga dos elementos
-        assertFalse(laLista.isEmpty());
-        laLista.add(new Web("snayds.hf", 1));
-        ListaWebs.getMiListaWebs().quicksort(laLista, 0,1);
-        // como vemos no hay ningun tipo de problema a la hora de tener solo dos elementos y los ordena correctamente
-        // CASO 4 que la lista tenga mas de dos elementos
-        assertFalse(laLista.isEmpty());
-        laLista.add(new Web("lopez.sa", 3));
-        laLista.add(new Web("sinose.re", 2));
-        ListaWebs.getMiListaWebs().quicksort(laLista, 0,3);
-        // como vemos el elemento que hemos añadido en la posicion 3 ahora esta
-        // en la posicion 2, que es la que le corresponde por id
-        assertEquals(laLista.get(2).getNombre(), "sinose.re");
-    }
-
     @Test
     void ordenarWebs()
-    {
-        // este método llama a el método quicksort, por tanto
-        // no es necesario hacer casos de prueba para este.
-    }
-
-    @Test
-    void ordenarWebs2()
     {
         // CASOS DE PRUEBA
         // usamos el comparator para comparar las webs por su nombre.
@@ -86,21 +25,21 @@ class ListaWebsTest {
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebavacia");
         System.out.println("Se carga el archivo: " + "pruebavacia");
         assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
-        ListaWebs.getMiListaWebs().ordenarWebs2();
+        ListaWebs.getMiListaWebs().ordenarWebs();
         // CASO 2 que la lista solo tenga 1 elemento
         ListaWebs.getMiListaWebs().anadirWeb(new Web("buenas.ad", 0));
         assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
-        ListaWebs.getMiListaWebs().ordenarWebs2();
+        ListaWebs.getMiListaWebs().ordenarWebs();
         // CASO 3 que la lista tenga dos elementos
         assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
         ListaWebs.getMiListaWebs().anadirWeb(new Web("snayds.hf", 1));
-        ListaWebs.getMiListaWebs().ordenarWebs2();
+        ListaWebs.getMiListaWebs().ordenarWebs();
         // como vemos no hay ningun tipo de problema a la hora de tener solo dos elementos y los ordena correctamente
         // CASO 4 que la lista tenga mas de dos elementos
         assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
         ListaWebs.getMiListaWebs().anadirWeb(new Web("lopez.sa", 3));
         ListaWebs.getMiListaWebs().anadirWeb(new Web("sinose.re", 2));
-        ListaWebs.getMiListaWebs().ordenarWebs2();
+        ListaWebs.getMiListaWebs().ordenarWebs();
         // como vemos el elemento que hemos añadido en la posicion 3 ahora esta
         // en la posicion 2, que es la que le corresponde por nombre
         assertEquals(ListaWebs.getMiListaWebs().getLista().get(2).getNombre(), "sinose.re");

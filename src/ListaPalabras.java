@@ -37,7 +37,7 @@ public class ListaPalabras
 
     public void anadirInicialPalabra(String palabra)
     {
-        //No se comprueba la valided de la palabra por que en teoria en el documento de lectura estan bien
+        //No se comprueba la validez de la palabra por que en teoria en el documento de lectura estan bien
             listaPalabras.add(palabra);
     }
     public String obtenerPalabra(Integer id)

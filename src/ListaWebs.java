@@ -20,75 +20,7 @@ public class ListaWebs
         }
         return miListaWebs;
     }
-
-    // métodos para el quicksort (el quicksort ordena basandose en id):
-    public void intercambiar(ArrayList<Web> laLista, Integer i, Integer j)
-    {
-        // aqui intercambiamos los elementos de la lista que nos interesen
-        try
-        {
-            Web aux = laLista.get(i);
-            laLista.set(i,laLista.get(j));
-            laLista.set(j,aux);
-        }
-        catch(IndexOutOfBoundsException ioobe)
-        {
-            System.out.println("La lista es vacia");
-        }
-        catch (NullPointerException npe)
-        {
-        }
-    }
-    private Integer particion(ArrayList<Web> laLista, Integer inicio, Integer fin)
-    {
-        Integer indice = (inicio-1);
-        Integer pivote;
-        if ((fin-inicio) % 2 == 0)
-        {
-            pivote = (fin-inicio)/2;
-        }
-        else
-        {
-            pivote = ((fin-inicio)+1)/2;
-        }
-        // empezamos el bucle
-        for (Integer indice2 = inicio; indice2<fin; indice2++)
-        {
-            if (laLista.get(indice2).getId()<=pivote)
-            {
-                indice++;
-                intercambiar(laLista, indice, indice2);
-            }
-        }
-        intercambiar(laLista, indice+1, fin);
-        return (indice+1);
-    }
-    public void quicksort(ArrayList<Web> laLista, Integer inicio, Integer fin)
-    {
-            // aqui haremos el quicksort usando recursividad
-        if ((inicio<fin) && (laLista.size()>1))
-        {
-            // aqui conseguimos la particion que nos interesa, obtenemos la posicion del elemento que ya esta ordenado
-            Integer indice = particion(laLista, inicio,fin);
-            // y dividimos el problema en dos trozos, que se llamaran recursivamente y se irán ordenando
-            if (inicio<indice)
-            {
-                quicksort(laLista,inicio, indice-1);
-            }
-            quicksort(laLista, indice+1, fin );
-        }
-    }
     public void ordenarWebs()
-    {
-        // no se pueden ordenar con un sort, ya que tenemos que ordenar la lista de objetos web
-        // por tanto tenemos que hacerlo de otra manera, empleando un algoritmo de ordenacion
-        // por complejidad del tiempo es mejor idea usar el algoritmo QUICKSORT --> O(n*log(n))
-        quicksort(this.lista, 0, this.lista.size()-1);
-    }
-    //Fin quicksort
-
-    // intentar probar otro tipo de ordenar
-    public void ordenarWebs2()
     {
         // esta es otra manera de comparar, en la que usamos un comparator.
         // coste lineal --> O(n*logn*c) donde c es el coste del comparator, que es despreciable, por tanto --> O(n*logn)
@@ -113,7 +45,7 @@ public class ListaWebs
         else
         {
             insertarWeb(pWeb);
-            this.ordenarWebs2();
+            this.ordenarWebs();
         }
         // este método ordena la lista usando el objeto comparator, respecto a su nombre
     }
@@ -315,36 +247,23 @@ public class ListaWebs
     }
     public String id2String(Integer pId)
     {
-        // hay que encontrar la string de esa web, y para eso no es necesario hacer una busqueda, sino que ya sabemos donde debería de estar
-        Web unaWeb;
-        String nom = null;
+        // Precondicion:
+        // Postcondicion: devuelve el elemento
+        // en la posicion pId
         try
         {
-            unaWeb = this.lista.get(pId);
-            while (unaWeb.getId()!=pId)
-            {
-                unaWeb = this.lista.get(pId);
-                if (unaWeb.getId()> pId)
-                {
-                    pId++;
-                }
-                else if (unaWeb.getId()< pId)
-                {
-                    pId--;
-                }
-            }
-            unaWeb = this.lista.get(pId);
-            nom = unaWeb.getNombre();
+            String res = getMiListaWebs().getLista().get(pId).getNombre();
+            return (res);
         }
-        catch(NullPointerException nullPointerException)
+        catch(NullPointerException npe)
         {
-            System.out.println("La web no se encuentra en la lista");
+            return null;
         }
-        catch (IndexOutOfBoundsException ioobe)
+        catch(IndexOutOfBoundsException ioobe)
         {
-            System.out.println("Fuera de rango!");
+            return null;
         }
-        return (nom);
+
     }
 
     private Iterator<Web> getIterador()

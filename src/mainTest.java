@@ -157,7 +157,7 @@ class mainTest
         main.getMiMain().guardarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebavacia");
         ListaWebs.getMiListaWebs().borrarLista();
         main.getMiMain().cargarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebavacia");
-        ListaWebs.getMiListaWebs().ordenarWebs2();
+        ListaWebs.getMiListaWebs().ordenarWebs();
         main.getMiMain().guardarListaIndex( path.toAbsolutePath().toString() + "\\src\\pruebavacia");
     }
     @org.junit.jupiter.api.Test

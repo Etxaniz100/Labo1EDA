@@ -47,9 +47,13 @@ public class main {
         // Prueba quicksort
         // Para probar el quicksort necesitamos añadir algunos elementos a la lista y borrar otros, para conseguir ver si el quicksort es efectivo.
         // realmente no es necesario implementar el quicksort ya que tenemos el método .sort que usa un comparator, que probablemente sea mas eficiente.
+        //ListaWebs.getMiListaWebs().anadirWeb(new Web("buenosdias.com", 48122));
+        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
+        //ListaWebs.getMiListaWebs().ordenarWebs2();
+        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
         ListaWebs.getMiListaWebs().insertarWeb(new Web("buenosdias.com", 4822));
-        System.out.println(ListaWebs.getMiListaWebs().id2String(2039804));
-        ListaWebs.getMiListaWebs().ordenarWebs();
+        //System.out.println(ListaWebs.getMiListaWebs().id2String(2039804));
+        //ListaWebs.getMiListaWebs().ordenarWebs();
 
         System.out.println(ListaWebs.getMiListaWebs().id2String(4822));
         System.out.println(ListaWebs.getMiListaWebs().id2String(4823));
@@ -57,34 +61,6 @@ public class main {
         // Prueba buscarWebPorString
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
         //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId()); // Una web aleatoria
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("zzzz6666.com").getId());  // Ultima web
-
-        // Prueba string2Id
-        //System.out.println(ListaWebs.getMiListaWebs().string2Id("0-00.pl")); // La primera web
-        //System.out.println(ListaWebs.getMiListaWebs().string2Id("willcom.gr.jp")); // Una web aleatoria
-        //System.out.println(ListaWebs.getMiListaWebs().string2Id("zzzz6666.com"));  // Ultima web
-
-        // Prueba borrarWeb
-        //Web unaWeb = ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp");
-        //ListaWebs.getMiListaWebs().borrarWeb(unaWeb);
-        //Web laWeb = ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp"); // como vemos, va a ser null ya que hemos borrado la web
-        // aqui hariamos un assetnull en las J-Units
-
-        // Pruebas de IMPORTACION DE FICHEROS
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(35452).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getNombre());
-        //System.out.println(ListaWebs.getMiListaWebs().getLista().get(11).getRelaciones().get(1));
-
-        // Pruebas ListaPalabras
-        //System.out.println(ListaPalabras.getMiListaPalabras().obtenerPalabra(78));
-        //ListaPalabras.getMiListaPalabras().anadirPalabra("'saaassjdjd");  // hemos puesto este ejemplo ya que sabemos que tiene que ir en la posición 13
-        //System.out.println(ListaPalabras.getMiListaPalabras().obtenerPalabra(354985));
-        //ListaPalabras.getMiListaPalabras().ordenarPalabras();   // este sort es algo mas ineficiente ya que hemos usado el Collections.sort, pero no sacrifica demasiado
-        //System.out.println(ListaPalabras.getMiListaPalabras().obtenerPalabra(13));
-        //System.out.println(ListaPalabras.getMiListaPalabras().obtenerPalabra(354985));
-        // ahora obtiene la palabra que estaba en la posicion anterior ya que hemos ordenado la lista
-
-    //Metodo main
     }
 
     public static main getMiMain()
@@ -173,7 +149,6 @@ public class main {
                     {
                         listaRelaciones.add(ListaWebs.getMiListaWebs().getLista().get(Integer.valueOf(relacionesTexto[i])));  // aqui convertimos la string a integer y luego a web
                     }
-
                 }
                 //Añadimos las relaciones a la web correspondiente
                 ListaWebs.getMiListaWebs().anadirRelacion(Integer.valueOf(datos[0]), listaRelaciones);
