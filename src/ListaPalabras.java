@@ -33,8 +33,12 @@ public class ListaPalabras
         if (!listaPalabras.contains(palabra) && palabra != null){
             listaPalabras.add(palabra);
         }
+    }
 
-
+    public void anadirInicialPalabra(String palabra)
+    {
+        //No se comprueba la valided de la palabra por que en teoria en el documento de lectura estan bien
+            listaPalabras.add(palabra);
     }
     public String obtenerPalabra(Integer id)
     {
