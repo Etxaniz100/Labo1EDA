@@ -21,7 +21,7 @@ public class ListaWebs
         return miListaWebs;
     }
 
-    // métodos para el quicksort:
+    // métodos para el quicksort (el quicksort ordena basandose en id):
     public void intercambiar(ArrayList<Web> laLista, Integer i, Integer j)
     {
         // aqui intercambiamos los elementos de la lista que nos interesen
@@ -258,11 +258,11 @@ public class ListaWebs
                     }
                 }
 
-                //En este caso la primera letra coincide
+
             }
             else if (nombreSeparador.charAt(caracter) > nombre.charAt(caracter))
             {
-                //Crearemos la nueva lista con la primera mitad
+                //Definimos la nueva lista con la primera mitad
                 //System.out.println("La letra no coincide, partimos por la derecha");
                 if (indxComprobador!=0)
                 {
@@ -390,5 +390,12 @@ public class ListaWebs
         lista = new ArrayList<Web>();
     }
 
-
+    public void ajustarIds(){
+        Iterator<Web> itr = this.getIterador();
+        Integer cont = 0;
+        while (itr.hasNext()){
+            itr.next().setId(cont);
+            cont ++;
+        }
+    }
 }

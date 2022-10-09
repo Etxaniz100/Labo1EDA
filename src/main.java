@@ -153,10 +153,10 @@ public class main {
                 if (datos.length > 1) {
                     String[] relacionesTexto = datos[1].split("\\s+?#+\\s+?");
 
-                    //En este bucle convertimos uno a uno las relaciones a Integer y las añadimos a la lista
+                    //En este bucle convertimos uno a uno las relaciones a Integer, buscamos en la lista webs y las añadimos a la lista
                     for(int i = 0; i < relacionesTexto.length; i++)
                     {
-                        listaRelaciones.add(ListaWebs.getMiListaWebs().getLista().get(Integer.valueOf(relacionesTexto[i])));  // aqui convertimos la string a integer
+                        listaRelaciones.add(ListaWebs.getMiListaWebs().getLista().get(Integer.valueOf(relacionesTexto[i])));  // aqui convertimos la string a integer y luego a web
                     }
 
                 }
@@ -175,6 +175,8 @@ public class main {
     {
         BufferedWriter bw;
         try {
+            ListaWebs.getMiListaWebs().ajustarIds();
+
             bw = new BufferedWriter(new FileWriter(nomF));
             ArrayList<Web> listaWeb = ListaWebs.getMiListaWebs().getLista();
             Integer cont = 0;
@@ -191,14 +193,17 @@ public class main {
         {
             e.printStackTrace();
         }
+
     }
 
     public void guardarRelaciones(String nomF)
     {
-        // abrimos el bufferedwriter que es el objeto que nos deja escribir en un fichero de texto.
+
+        // Abrimos el bufferedwriter que es el objeto que nos deja escribir en un fichero de texto.
         BufferedWriter bw;
         try
         {
+            ListaWebs.getMiListaWebs().ajustarIds();
             bw = new BufferedWriter(new FileWriter(nomF));
             //ListaWebs.getMiListaWebs().ordenarWebs();
             ArrayList<Web> listaWeb = ListaWebs.getMiListaWebs().getLista();
@@ -207,7 +212,6 @@ public class main {
             Web webActual;
             while (cont < listaWeb.size())
             {
-                System.out.println(cont);
                 webActual = listaWeb.get(cont);
                 listaRelaciones = webActual.enlacesSalientes();
                 bw.write(webActual.getId().toString() + " ---> ");
@@ -217,8 +221,7 @@ public class main {
                 Iterator<Web> itr =  listaRelaciones.iterator();
                 while (itr.hasNext())
                 {
-                    bw.write(" ### " + listaRelaciones.iterator().next().getId().toString());
-                    itr.next();
+                    bw.write(" ### " + itr.next().getId().toString());
                 }
 
                 cont ++;
@@ -232,7 +235,7 @@ public class main {
         }
         catch(NullPointerException npe)
         {
-            System.out.println("La lista es vacía!");
+            System.out.println("La lista es vacía");
         }
     }
 }
