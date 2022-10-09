@@ -302,7 +302,16 @@ public class ListaWebs
     }
     public Integer string2Id(String pNombre)
     {
-        return buscarWebPorString(pNombre).getId();
+        Integer devolver = null;
+        try
+        {
+            devolver= buscarWebPorString(pNombre).getId();
+        }
+        catch (NullPointerException npe)
+        {
+            System.out.println("Pagina no encontrada");
+        }
+        return devolver;
     }
     public String id2String(Integer pId)
     {
@@ -324,11 +333,16 @@ public class ListaWebs
                     pId--;
                 }
             }
+            unaWeb = this.lista.get(pId);
             nom = unaWeb.getNombre();
         }
         catch(NullPointerException nullPointerException)
         {
             System.out.println("La web no se encuentra en la lista");
+        }
+        catch (IndexOutOfBoundsException ioobe)
+        {
+            System.out.println("Fuera de rango!");
         }
         return (nom);
     }

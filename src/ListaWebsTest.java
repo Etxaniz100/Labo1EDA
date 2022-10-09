@@ -251,29 +251,135 @@ class ListaWebsTest {
     void string2Id()
     {
         // CASOS DE PRUEBA
+        Web laWeb = new Web("buenas.ad", 0);
+        Web web1 = new Web("sadads.yt", 1);
+        Web web2 = new Web("dfadfads.ds", 2);
+        // CASO 1 buscar una web en una lista vacia
+        ListaWebs.getMiListaWebs().borrarLista();
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertNull(ListaWebs.getMiListaWebs().string2Id(laWeb.getNombre()));
+        // CASO 2 lista de un elemento
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        // subcaso 1 buscar la web que esta en la lista
+        assertEquals(ListaWebs.getMiListaWebs().string2Id("buenas.ad"),0 );
+        // subcaso 2 buscar una web que no esta en la lista
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString(web1.getNombre()));
+        // CASO 3 lista de varios elementos
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().anadirWeb(web1);
+        ListaWebs.getMiListaWebs().anadirWeb(web2);
+        // subcaso 1 buscar la primera web
+        assertEquals(ListaWebs.getMiListaWebs().string2Id("buenas.ad"),0 );
+        // subcaso 2 buscar la ultima web
+        assertEquals(ListaWebs.getMiListaWebs().string2Id("dfadfads.ds"),2);
+        // subcaso 3 buscar una web del medio
+        assertEquals(ListaWebs.getMiListaWebs().string2Id("sadads.yt"),1);
+        // subcaso 4 buscar una web que no esta en la lista
+        assertNull(ListaWebs.getMiListaWebs().string2Id("estawebnoexiste.com"));
     }
 
     @Test
     void id2String()
     {
         // CASOS DE PRUEBA
+        Web laWeb = new Web("buenas.ad", 0);
+        Web web1 = new Web("sadads.yt", 1);
+        Web web2 = new Web("dfadfads.ds", 2);
+        // CASO 1 buscar una web en una lista vacia
+        ListaWebs.getMiListaWebs().borrarLista();
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertNull(ListaWebs.getMiListaWebs().id2String(0));
+        // CASO 2 lista de un elemento
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        // subcaso 1 buscar la web que esta en la lista
+        assertEquals(ListaWebs.getMiListaWebs().id2String(0), "buenas.ad");
+        // subcaso 2 buscar una web que no esta en la lista
+        assertNull(ListaWebs.getMiListaWebs().buscarWebPorString(web1.getNombre()));
+        // CASO 3 lista de varios elementos
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().borrarLista();
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        ListaWebs.getMiListaWebs().anadirWeb(web1);
+        ListaWebs.getMiListaWebs().anadirWeb(web2);
+        // subcaso 1 buscar la primera web
+        assertEquals(ListaWebs.getMiListaWebs().id2String(0), "buenas.ad");
+        // subcaso 2 buscar la ultima web
+        assertEquals(ListaWebs.getMiListaWebs().id2String(2), "dfadfads.ds");
+        // subcaso 3 buscar una web del medio
+        assertEquals(ListaWebs.getMiListaWebs().id2String(1),"sadads.yt" );
+        // subcaso 4 buscar una web que no esta en la lista
+        assertNull(ListaWebs.getMiListaWebs().id2String(4));
     }
 
     @Test
     void word2Webs()
     {
         // CASOS DE PRUEBA
+        Web laWeb = new Web("buenas.ad", 0);
+        Web web1 = new Web("sadads.yt", 1);
+        Web web2 = new Web("dfadfads.ds", 2);
+        // CASO 1 lista vacia
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertEquals(ListaWebs.getMiListaWebs().word2Webs("buenas"), new ArrayList<String>());
+        // CASO 2 lista con 1 elemento
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertNotNull(ListaWebs.getMiListaWebs().word2Webs("buenas"));
+        assertEquals(ListaWebs.getMiListaWebs().word2Webs("adios"), new ArrayList<String>());
+        // CASO 3 lista con varios elementos
+        ListaWebs.getMiListaWebs().anadirWeb(web1);
+        ListaWebs.getMiListaWebs().anadirWeb(web2);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+            // subcaso 1 palabra que contenga 1 sola web
+        assertNotNull(ListaWebs.getMiListaWebs().word2Webs("buenas"));
+            // subcaso 2 palabra que contengan mas de una web
+        assertNotNull(ListaWebs.getMiListaWebs().word2Webs("ad"));
+            // subcaso 3 palabra que no esta dentro
+        assertEquals(ListaWebs.getMiListaWebs().word2Webs("adios"), new ArrayList<String>());
     }
 
     @Test
     void web2Words()
     {
         // CASOS DE PRUEBA
+        Web laWeb = new Web("buenas.ad", 0);
+        Web web1 = new Web("sadads.yt", 1);
+        Web web2 = new Web("dfadfads.ds", 2);
+        // CASO 1 lista vacia
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertEquals(ListaWebs.getMiListaWebs().web2Words("buenas.ad"), new ArrayList<String>());
+        // CASO 2 lista con 1 elemento
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        assertNotNull(ListaWebs.getMiListaWebs().web2Words("buenas.ad"));
+        assertEquals(ListaWebs.getMiListaWebs().web2Words("adios.sd"), new ArrayList<String>());
+        // CASO 3 lista con varios elementos
+        ListaWebs.getMiListaWebs().anadirWeb(web1);
+        ListaWebs.getMiListaWebs().anadirWeb(web2);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+            // subcaso 1 web que contiene varias palabras
+        assertNotNull(ListaWebs.getMiListaWebs().web2Words("buenas.ad"));
+            // subcaso 2 web que no esta dentro
+        assertEquals(ListaWebs.getMiListaWebs().web2Words("adios.sd"), new ArrayList<String>());
     }
 
     @Test
     void borrarLista()
     {
-        // CASOS DE PRUEBA
+        Web laWeb = new Web("buenas.ad", 0);
+        Web web1 = new Web("sadads.yt", 1);
+        Web web2 = new Web("dfadfads.ds", 2);
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().anadirWeb(laWeb);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().anadirWeb(web1);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().anadirWeb(web2);
+        assertFalse(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().borrarLista();
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+
     }
 }
