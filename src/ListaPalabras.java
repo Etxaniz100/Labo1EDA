@@ -29,19 +29,23 @@ public class ListaPalabras
     public void anadirPalabra(String palabra)
     {
         // Se ordena despues de añadir la palabra porque el .add la añade al final.
-        listaPalabras.add(palabra);
+
+        if (!listaPalabras.contains(palabra) && palabra != null){
+            listaPalabras.add(palabra);
+        }
+
+
     }
     public String obtenerPalabra(Integer id)
     {
         String devolver = null;
-        try
-        {
-            listaPalabras.get(id);
-            devolver = listaPalabras.get(id);
-        }
-        catch (IndexOutOfBoundsException ioobe)
-        {
-            System.out.println("No está la palabra en la lista");
+        if (id != null) {
+            try {
+                listaPalabras.get(id);
+                devolver = listaPalabras.get(id);
+            } catch (IndexOutOfBoundsException ioobe) {
+                System.out.println("No existe la posicion");
+            }
         }
         return devolver;
     }
