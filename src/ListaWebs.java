@@ -281,7 +281,7 @@ public class ListaWebs
             nombre = itr.next().getNombre();
             if (nombre.contains(s)){
                 listaReturn.add(nombre);
-                System.out.println(nombre);
+
             }
         }
         return listaReturn;
@@ -298,7 +298,6 @@ public class ListaWebs
             palabra = ListaPalabras.getMiListaPalabras().obtenerPalabra(cont);
             if (laWeb.getNombre().contains(palabra)){
                 listaReturn.add(palabra);
-                System.out.println("Contador = " + cont + ", palabra = " + palabra);
             }
             cont ++;
         }

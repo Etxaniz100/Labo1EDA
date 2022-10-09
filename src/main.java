@@ -24,12 +24,7 @@ public class main {
     // ------ Metodos ------
     public static void main(String args[])
     {
-        /*
-        Stopwatch reloj = new Stopwatch();       // Inicialización
-        System.out.println("Tiempo inicial: " + reloj.elapsedTime());
-        System.out.println("Tiempo actual: " + reloj.elapsedTime());
 
-        */
         Stopwatch reloj = new Stopwatch();       // Inicialización
         System.out.println("Tiempo inicial: " + reloj.elapsedTime());
         Path path = Paths.get("");
@@ -39,28 +34,13 @@ public class main {
         System.out.println("Tiempo: " + reloj.elapsedTime());
         main.getMiMain().cargarListaPalabras( path.toAbsolutePath().toString() + "\\src\\words.txt");
         System.out.println("Tiempo: " + reloj.elapsedTime());
-
-
-        //ListaWebs.getMiListaWebs().insertarWeb(new Web("UwU.com", 2));
-        //main.getMiMain().guardarListaIndex( path.toAbsolutePath().toString() + "\\src\\index-2022-2023");
-        //ListaWebs.getMiListaWebs().word2Webs("argentina");
-        // Prueba quicksort
-        // Para probar el quicksort necesitamos añadir algunos elementos a la lista y borrar otros, para conseguir ver si el quicksort es efectivo.
-        // realmente no es necesario implementar el quicksort ya que tenemos el método .sort que usa un comparator, que probablemente sea mas eficiente.
-        //ListaWebs.getMiListaWebs().anadirWeb(new Web("buenosdias.com", 48122));
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
-        //ListaWebs.getMiListaWebs().ordenarWebs2();
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("buenosdias.com").getId());
-        ListaWebs.getMiListaWebs().insertarWeb(new Web("buenosdias.com", 4822));
-        //System.out.println(ListaWebs.getMiListaWebs().id2String(2039804));
-        //ListaWebs.getMiListaWebs().ordenarWebs();
-
-        System.out.println(ListaWebs.getMiListaWebs().id2String(4822));
-        System.out.println(ListaWebs.getMiListaWebs().id2String(4823));
+        System.out.println(ListaWebs.getMiListaWebs().word2Webs("argentina"));
         System.out.println("Tiempo: " + reloj.elapsedTime());
-        // Prueba buscarWebPorString
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("0-00.pl").getId()); // La primera web
-        //System.out.println(ListaWebs.getMiListaWebs().buscarWebPorString("willcom.gr.jp").getId()); // Una web aleatoria
+        System.out.println(ListaWebs.getMiListaWebs().web2Words("zeitgeistargentina.com"));
+        System.out.println("Tiempo: " + reloj.elapsedTime());
+        ListaWebs.getMiListaWebs().ordenarWebs();
+        System.out.println("Tiempo: " + reloj.elapsedTime());
+
     }
 
     public static main getMiMain()
