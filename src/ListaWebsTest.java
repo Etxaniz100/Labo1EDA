@@ -382,4 +382,31 @@ class ListaWebsTest {
         assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
 
     }
+
+    @Test
+    void ajustarIds()
+    {
+        Web web1 = new Web("buenas.ad", 0);
+        Web web2 = new Web("sadads.yt", 1);
+        Web web3 = new Web("dfadfads.ds", 2);
+
+        //Lista vacia
+        assertTrue(ListaWebs.getMiListaWebs().getLista().isEmpty());
+        ListaWebs.getMiListaWebs().ajustarIds();
+
+        //Lista con varios elementos
+        ListaWebs.getMiListaWebs().insertarWeb(web2);
+        ListaWebs.getMiListaWebs().insertarWeb(web1);
+        ListaWebs.getMiListaWebs().insertarWeb(web3);
+
+        assertEquals(ListaWebs.getMiListaWebs().id2String(0),"buenas.ad");
+        assertEquals(ListaWebs.getMiListaWebs().id2String(1),"sadads.yt");
+        assertEquals(ListaWebs.getMiListaWebs().id2String(2),"dfadfads.ds");
+
+        ListaWebs.getMiListaWebs().ajustarIds();
+
+        assertEquals(ListaWebs.getMiListaWebs().id2String(0),"sadads.yt");
+        assertEquals(ListaWebs.getMiListaWebs().id2String(1),"buenas.ad");
+        assertEquals(ListaWebs.getMiListaWebs().id2String(2),"dfadfads.ds");
+    }
 }
